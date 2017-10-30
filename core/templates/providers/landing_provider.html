@@ -1,0 +1,295 @@
+{% extends 'base_core.html'  %}
+{% load staticfiles  %}
+{% block title  %}a melhor plataforma para prestadores de serviços{% endblock  %}
+{% block content  %}
+<header>
+
+            <nav class="navbar navbar-default navbar-sticky bootsnav">
+                <div class="container"> 
+                    <div class="attr-nav">
+                        <ul>
+                            <li><a href="{% url 'login' %}">ENTRAR</a></li>
+                        </ul>
+                        <ul>
+                    </div>
+                    <div class="navbar-header" style="height:90px;">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="#brand"><img src="{% static 'core/images/logo404.png' %}" style="width:180px; margin-top: -8px;" class="logo" alt=""></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" style="margin-top:13px;" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li><a href="login.html">SOBRE</a></li>
+							<li><a href="login.html">FAQ</a></li>
+							<li><a href="login.html">CONTATO</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="side">
+                    <a href="#" class="close-side"><i class="ti-close"></i></a>
+                </div>
+            </nav>
+
+        </header> 
+        <section class="main-cover cover-style-alt" style="background:#f8f8f8;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="cover-info text-center">
+                            <h2><span class="landing_provider"></span></h2>
+                            <p style="font-size:20px;">Nós vamos mostrar o caminho para inovar o seu negócio e modernizar o seu relacionamento com clientes. </p>
+                            <a href="{% url 'accounts:registration'  %}" class="btn btn-theme-primary">vamos começar ?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+                        <img src="{% static 'core/images/result.png' %}" class="img-responsive" alt="image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="call-to-action action-light  pt-40 pb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <div class="action-content text-left ptb-20">
+                            <h2>Já imaginou possuir um assistente virtual que se relacione com seus clientes ?</h2>
+                            <p>Gerenciar seu negócio e cuidar de seus clientes não é complicado. O zummbee ajuda qualquer profissional a organizar todo seu negócio de forma segura e totalmente online.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-12 ptb-20">
+                        <div class="action-button">
+                            <a href="#" class="btn btn-theme-primary">Cadastre-se grátis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="feature ptb-80 overlay-white">
+            <h3 class="hide">Funcionalidades</h3>
+            <div class="col-md-6 col-md-push-6 feature-image no-padding scrollme">
+                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="300">
+                    <div class="top-bar">
+                        <ul class="lights">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="frame">
+                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="container feature-desc">
+                <div class="row">
+                    <div class="col-md-5 feature-info">
+                        <article>
+                            <h4 class="mb-30">Sempre com você</h4>
+                            <h5 class="heading-thin mb-10 text-uppercase">24 horas por dia, 7 dias por semana.</h5>
+                            <p class="mb-50">Uma assistente incrível para te ajudar a cuidar de suas despesas e recebimentos.<br /> Orçamentos, ordens de serviço e agendamentos onde você estiver e online.</p>
+                            <h5 class="heading-thin mb-10 text-uppercase">Traga o seu mundo</h5>
+                            <p>Esqueça soluções com foco em vendas, traga o seu negócio para o zummbee e deixe que ele trabalhe para você.<br /> Você terá tempo para buscar melhorias em sua prestação de serviços.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="feature ptb-80">
+            <h3 class="hide">Funcionalidades</h3>
+            <div class="col-md-6 feature-image no-padding scrollme">
+                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="-300">
+                    <div class="top-bar">
+                        <ul class="lights">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="frame">
+                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="container feature-desc">
+                <div class="row">
+                    <div class="col-md-5 col-md-push-7 feature-info">
+                        <article>
+                            <h4 class="mb-30">Segurança é tudo</h4>
+                            <h5 class="heading-thin mb-10 text-uppercase">Conheça seu cliente</h5>
+                            <p class="mb-50">Nós acreditamos muito em nossos clientes, fomentamos uma comunidade segura e honesta, para que sempre possamos prover um excelente serviço com máxima segurança.</p>
+                            <h5 class="heading-thin mb-10 text-uppercase">Clientes e Profissionais</h5>
+                            <p> Ambos nos enviam a digitalização de seus documentos originais, e ainda podem conectar-se através de seus perfis sociais, onde tudo se torna transparente.</p>
+                            
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="feature ptb-80 overlay-white">
+            <h3 class="hide">Funcionalidades</h3>
+            <div class="col-md-6 col-md-push-6 feature-image no-padding scrollme">
+                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="300">
+                    <div class="top-bar">
+                        <ul class="lights">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="frame">
+                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="container feature-desc">
+                <div class="row">
+                    <div class="col-md-5 feature-info">
+                        <article>
+                            <h4 class="mb-30">Atendimentos de alto impacto</h4>
+                            <h5 class="heading-thin mb-10">Uma plataforma que se molda ao comportamento das pessoas, nosso agente inteligente foi criado para automatizar suas tarefas em atendimentos, agendamentos, e comunicação.</h5>
+                            <h5 class="heading-thin mb-10">A automatização destes processos, resulta em uma economia enorme de tempo e recursos.</h5><br />
+                            <h4 class="mb-30">Assistente virtual</h4>
+                            <h5 class="heading-thin mb-10"> Através de nosso assistente virtual, seu negócio conseguirá atender seus clientes de forma mais rápida e eficiente, inclusive cuidará de seus recebimentos para você.</h5>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="functionalities" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 col-sm-12 col-xs-12">
+                        <div class="functionalities-content">
+                            <div class="functionality-item ptb-20">
+                                <div class="media-left">
+                                    <div class="item-icon">
+                                        <span class="fa fa-bank"></span>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h5>Troque pontos com seus clientes </h5>
+                                    <p>Quando você conclui um serviço nós descontamos 1 zb de você e passamos ao seu cliente, e você pode criar ofertas com descontos em seus serviços para receber mais zb's de seus clientes, rápido e fácil. </p>
+                                </div>
+                            </div>
+                            <div class="functionality-item ptb-20">
+                                <div class="media-left">
+                                    <div class="item-icon">
+                                        <span class="fa fa-money"></span>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h5> R$ 0,99 por serviço </h5>
+                                    <p>Não é incrível, 1 zb vale menos que R$ 1,00. Só descontamos seus zb's assim que o serviço for finalizado. </p>
+                                </div>
+                            </div>
+                            <div class="functionality-item ptb-20">
+                                <div class="media-left">
+                                    <div class="item-icon">
+                                        <span class="fa fa-id-badge"></span>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h5>Sua reputação </h5>
+                                    <p>Nós iremos sempre dar dicas a você para deixar sua reputação em alto nível e ser recomendado com muita frequência na comunidade zummbee. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="background-left"></div>
+            </div>
+        </section>
+        <section class="counter overlay-white ptb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="counter-item text-center">
+                            <div class="conter-icon put-center">
+                                <span class="fa fa-users"></span>
+                            </div>
+                            <h3>
+                                <span class="count">554</span>
+                            </h3>
+                            <h6>Clientes</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="counter-item text-center">
+                            <div class="conter-icon put-center">
+                                <span class="fa fa-gamepad"></span>
+                            </div>
+                            <h3>
+                                <span class="count">2580</span>
+                            </h3>
+                            <h6>Pontos negociados</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="counter-item text-center">
+                            <div class="conter-icon put-center">
+                                <span class="fa fa-check"></span>
+                            </div>
+                            <h3>
+                                <span class="count">580</span>
+                            </h3>
+                            <h6>Serviços finalizados</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="counter-item text-center">
+                            <div class="conter-icon put-center">
+                                <span class="fa fa-user-o"></span>
+                            </div>
+                            <h3>
+                                <span class="count">1586</span>
+                            </h3>
+                            <h6>Profissionais</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer light-footer pt-60 pb-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="footer-copy ptb-30">
+                            <p>zummbee &hearts; 2017 | A melhor plataforma para prestadores de serviços </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="footer-social ptb-30">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-facebook"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-linkedin"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-google"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+{% endblock  %}

@@ -1,0 +1,55 @@
+{% extends 'base_login.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="card card-shadowed p-50 w-400 mb-0" style="max-width: 100%">
+        <img src="{% static 'images/logo.png'  %}" style="margin-left: 20px; height:80px; width:200px;"  alt="">
+      <br><br>
+
+      <form action="."  method="POST" class="form-type-material">
+          {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="email" class="form-control" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="first_name" class="form-control" placeholder="Primeiro Nome">
+        </div>
+        <div class="form-group">
+          <input type="text" name="last_name" class="form-control" placeholder="Último Nome">
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password1" class="form-control" placeholder="Senha">
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password2" class="form-control" placeholder="Senha (confirmação)">
+        </div>
+
+        <div class="form-group">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Eu aceito todos os <a class="text-primary" href="#">Termos</a></span>
+          </label>
+        </div>
+
+        <br>
+        <button class="btn btn-bold btn-block btn-primary" type="submit">Criar conta</button>
+      </form>
+
+      <hr class="w-30">
+      <div class="divider">Conecte-se com:</div>
+      <div class="text-center">
+          <a class="btn btn-circular btn-sm btn-facebook mr-4" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook"></i></a>
+          <a class="btn btn-circular btn-sm btn-google mr-4" href="#"><i class="fa fa-google"></i></a>
+          <a class="btn btn-circular btn-sm btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
+      </div>
+
+      <p class="text-center text-muted fs-13 mt-20">Já possui sua conta? <a href="{%url 'login'  %}">Minha conta</a></p>
+  </div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base_accounts.html" %}
+{% block title  %}Perfil - Zummbee{% endblock  %}
+{% load widget_tweaks %}
+{% load staticfiles  %}
+{% block content %}
+                <!-- START PAGE CONTENT -->
+                <div id="page-right-content">
+
+                    <div class="container">
+
+                        <!-- Personal-Information -->
+                                    <div class="panel panel-default panel-fill">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Não deixe de preencher ;)</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {% for error in form.non_field_errors  %}
+                                                <div class="alert alert-danger">
+                                                    {{ error  }}
+                                                </div>
+                                                {% endfor  %}
+
+                                                {% for hidden in form.hidden_fields %}
+                                                {{ hidden }}
+                                                {% endfor %}
+                                                <div class="row">
+                                                <div class="form-group{% if form.avatar.errors  %} has-error{% endif %}">
+                                                    <label for="{{ form.avatar.label  }}" style="color:black;"></label>
+                                                    <div class="col-md-3">
+                                                        <div class="text-center">
+                                                            {% if not request.user.profile.avatar  %}
+                                                            <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                                            {% else  %}
+                                                            <img src="{{ request.user.profile.avatar.url }}" class="avatar img-circle" style="width:100px; height:100px;"  alt="avatar">
+                                                            {% endif  %}
+                                                            <h6 class="form-control">Envie aqui sua foto...</h6>
+                                                            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Procurar</span>
+                                                            <input type="file" name="avatar"  class="form-control" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    {% for error in form.avatar.errors  %}
+                                                    <span class="help-block" style="color:red;">{{ error  }}</span>
+                                                    {% endfor  %}
+                                                    <div class="col-md-9">
+                                                        <p>Sua foto é seu cartão de visita pessoal, envie uma foto clara e frontal do seu rosto, uma maneira importante para clientes e prestadores de serviço se conhecerem. Evite colocar informações pessoais em suas fotos de perfil.</p>
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                                <hr />
+                                                <div class="form-group">
+                                                    <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Salvar</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <!-- Personal-Information -->
+                    </div>
+                    <!-- end container -->
+
+{% endblock %}

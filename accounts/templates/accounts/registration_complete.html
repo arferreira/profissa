@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<body class="blank">
+
+<!-- Simple splash screen-->
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="lock-container">
+    <div>
+
+        <div class="hpanel">
+            <div class="panel-body text-center">
+
+                <i class="pe-7s-lock big-icon text-success"></i>
+                <br/>
+                <p>Você precisa validar sua conta através do seu e-mail.</p>
+                <!-- <form action="#" role="form" class="m-t"> -->
+                <!--     <div class="form-group"> -->
+                <!--         <input type="password" required="" placeholder="******" class="form-control"> -->
+                <!--     </div> -->
+                <!--     <button class="btn btn-primary block full-width" type="submit">Unlock</button> -->
+                <!-- </form> -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+	<!-- Vendor scripts -->
+	<script src="{% static 'vendor/jquery/dist/jquery.min.js'%}"></script>
+	<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js'%}"></script>
+	<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js'%}"></script>
+	<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+	<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js'%}"></script>
+	<script src="{% static 'vendor/iCheck/icheck.min.js'%}"></script>
+	<script src="{% static 'vendor/sparkline/index.js'%}"></script>
+
+	<!-- App scripts -->
+	<script src="{% static 'scripts/homer.js'%}"></script>
+
+</body>
+{% endblock %}

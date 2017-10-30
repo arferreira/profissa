@@ -1,0 +1,247 @@
+{% load staticfiles  %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>Zummbee - Painel de controle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="" name="description" />
+        <meta content="Zummbee LTDA" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico'  %}">
+
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="theme-color" content="#ffffff">
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="{% static 'plugins/morris/morris.css'%} ">
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- MetisMenu CSS -->
+        <link href="{% static 'css/metisMenu.min.css' %}" rel="stylesheet">
+        <!-- Icons CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    </head>
+
+
+    <body>
+
+        <div id="page-wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="">
+                        <a href="index.html" class="logo">
+                            <img src="{% static 'images/logo.png' %}" alt="logo" class="logo-lg" />
+                            <img src="{% static 'images/logo_sm.png' %}" alt="logo" class="logo-sm hidden" />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Top navbar -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="">
+
+                            <!-- Mobile menu button -->
+                            <div class="pull-left">
+                                <button type="button" class="button-menu-mobile visible-xs visible-sm" style="margin-left:30px;">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <span class="clearfix"></span>
+                            </div>
+
+                            <!-- Top nav left menu -->
+                            <ul class="nav navbar-nav hidden-sm hidden-xs top-navbar-items">
+                                <li><a href="#">Ajuda</a></li>
+                                <li><a href="#">Contato</a></li>
+                            </ul>
+
+                            <!-- Top nav Right menu -->
+                            <ul class="nav navbar-nav navbar-right top-navbar-items-right pull-right">
+                                <li class="dropdown top-menu-item-xs">
+                                    <a href="#" data-target="#" class="dropdown-toggle menu-right-item" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-cog"></i> <span class="label label-danger">3</span>
+                                    </a>
+                                    <ul class="dropdown-menu p-0 dropdown-menu-lg">
+                                        <!--<li class="notifi-title"><span class="label label-default pull-right">New 3</span>Notification</li>-->
+                                        <li class="list-group notification-list" style="height: 267px;">
+                                           <div class="slimscroll">
+                                               <!-- list item-->
+                                               <a href="javascript:void(0);" class="list-group-item">
+                                                  <div class="media">
+                                                     <div class="media-left p-r-10">
+                                                        <em class="fa fa-diamond bg-primary"></em>
+                                                     </div>
+                                                     <div class="media-body">
+                                                        <h5 class="media-heading">Você possui um novo orçamento</h5>
+                                                        <p class="m-0">
+                                                            <small>Juliano está solicitando um orçamento</small>
+                                                        </p>
+                                                     </div>
+                                                  </div>
+                                               </a>
+
+
+                                               <!-- list item-->
+                                               <a href="javascript:void(0);" class="list-group-item">
+                                                  <div class="media">
+                                                     <div class="media-left p-r-10">
+                                                        <em class="fa fa-user-plus bg-danger"></em>
+                                                     </div>
+                                                     <div class="media-body">
+                                                        <h5 class="media-heading">Você recebeu uma recomendação</h5>
+                                                        <p class="m-0">
+                                                            <small>João recomendou suas habilidades.</small>
+                                                        </p>
+                                                     </div>
+                                                  </div>
+                                               </a>
+
+                                               <a href="javascript:void(0);" class="list-group-item">
+                                                  <div class="media">
+                                                     <div class="media-left p-r-10">
+                                                        <em class="fa fa-cog bg-warning"></em>
+                                                     </div>
+                                                     <div class="media-body">
+                                                        <h5 class="media-heading">Nova atualização</h5>
+                                                        <p class="m-0">
+                                                            <small>O zummbee foi atualizado para melhor atender suas demandas</small>
+                                                        </p>
+                                                     </div>
+                                                  </div>
+                                               </a>
+                                           </div>
+                                        </li>
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);" class="list-group-item text-right">-->
+                                                <!--<small class="font-600">See all notifications</small>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown top-menu-item-xs">
+                                  <a href="" class="dropdown-toggle menu-right-item profile" data-toggle="dropdown" aria-expanded="true">
+                                    {% if request.user.profile.avatar  %}
+                                    <img src="{{ request.user.profile.avatar.url }}" alt="user-img" class="img-circle">
+                                    {% else %}
+                                    <img src="//placehold.it/100" class="img-circle" alt="avatar">
+                                    {% endif %}
+                                  </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:void(0)"><i class="ti-user m-r-10"></i> Perfil</a></li>
+                                        <li><a href="javascript:void(0)"><i class="ti-settings m-r-10"></i> Configurações</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{% url 'logout' %}"><i class="ti-power-off m-r-10"></i> Sair</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- end container -->
+                </div> <!-- end navbar -->
+            </div>
+            <!-- Top Bar End -->
+
+
+            <!-- Page content start -->
+            <div class="page-contentbar">
+
+                <!--left navigation start-->
+                <aside class="sidebar-navigation">
+                    <div class="scrollbar-wrapper">
+                        <div>
+                            <button type="button" class="button-menu-mobile btn-mobile-view visible-xs visible-sm">
+                                <i class="mdi mdi-close"></i>
+                            </button>
+                            <!-- User Detail box -->
+                            <div class="user-details">
+                                <div class="pull-left">
+                                    {% if request.user.profile.avatar  %}
+                                    <img src="{{ request.user.profile.avatar.url }}" alt="" class="thumb-md img-circle">
+                                    {% else %}
+                                    <img src="//placehold.it/100" class="thumb-md img-circle" alt="avatar">
+                                    {% endif %}
+                                </div>
+                                <div class="user-info">
+                                    <a href="#">Mariana Rosa</a>
+                                    <p class="text-muted m-0">Plano: Básico</p>
+                                </div>
+                            </div>
+                            <!--- End User Detail box -->
+
+                            <!-- Left Menu Start -->
+                            <ul class="metisMenu nav" id="side-menu">
+                                <li><a href="index.html"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
+
+                                <li>
+                                    <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-money"></i> Financeiro<span class="fa arrow"></span></a>
+                                    <ul class="nav-second-level nav" aria-expanded="true">
+                                        <li><a href="categorias.html">Categorias</a></li>
+                                        <li><a href="javascript: void(0);">Recebimentos</a></li>
+                                        <li><a href="javascript: void(0);">Despesas</a></li>
+                                        <li><a href="javascript: void(0);">Clientes</a></li>
+                                        <li><a href="javascript: void(0);">Fornecedores</a></li>
+                                        <li><a href="javascript: void(0);">Contas Bancárias</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-server"></i> Serviços<span class="fa arrow"></span></a>
+                                    <ul class="nav-second-level nav" aria-expanded="true">
+                                        <li><a href="javascript: void(0);">Tipos de Serviços</a></li>
+                                        <li><a href="javascript: void(0);">Ordens de Serviços</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="index.html"><i class="fa fa-shield"></i> Nota Fiscal de Serviço</a></li>
+                            </ul>
+                        </div>
+                    </div><!--Scrollbar wrapper-->
+                </aside>
+                <!--left navigation end-->
+                {% block content  %}{% endblock  %}
+
+                    <div class="footer">
+                        <div>
+                            <strong>Zummbee</strong> - Copyright &copy; 2017
+                        </div>
+                    </div> <!-- end footer -->
+
+                </div>
+                <!-- End #page-right-content -->
+
+            </div>
+            <!-- end .page-contentbar -->
+        </div>
+        <!-- End #page-wrapper -->
+
+
+
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/metisMenu.min.js' %}"></script>
+        <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+
+        <!--Morris Chart-->
+        <script src="{% static 'plugins/morris/morris.min.js' %}"></script>
+        <script src="{% static 'plugins/raphael/raphael-min.js' %}"></script>
+
+        <!-- Dashboard init -->
+        <script src="{% static 'pages/jquery.dashboard.js' %}"></script>
+
+        <!-- App Js -->
+        <script src="{% static 'js/jquery.app.js' %}"></script>
+
+    </body>
+</html>
