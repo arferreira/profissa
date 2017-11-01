@@ -1,1 +1,1 @@
-web: gunicorn zmb.wsgi --log-file -
+web: gunicorn profissade.wsgi --log-file -
