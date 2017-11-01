@@ -23,7 +23,7 @@ File: Main file css
   text-transform: uppercase; }
   .logo img {
     padding: 5px;
-    height: 70px; }
+    height: 60px; }
   .logo h1 {
     height: 50px;
     margin: 0 auto;
@@ -479,7 +479,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #7a7d84; }
 
 .text-primary {
-  color: #458bc4; }
+  color: #ff5151 !important; }
 
 .text-warning {
   color: #e2ab3b; }
@@ -498,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #23b195 !important; }
 
 .bg-primary {
-  background-color: #458bc4 !important; }
+  background-color: #ff5151 !important; }
 
 .bg-success {
   background-color: #4fc55b !important; }
@@ -781,14 +781,14 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #cccccc !important; }
 
 .btn-primary {
-  background-color: #458bc4 !important;
-  border: 1px solid #458bc4 !important; }
+  background-color: #504a4a !important;
+  border: 1px solid #504a4a !important; }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active,
 .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-  background-color: #3a7eb6 !important;
-  border: 1px solid #3a7eb6 !important; }
+  background-color: #ff5151 !important;
+  border: 1px solid #ff5151 !important; }
 
 .btn-success {
   background-color: #4fc55b !important;
