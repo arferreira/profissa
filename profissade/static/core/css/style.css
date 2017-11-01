@@ -801,7 +801,7 @@ Buttons
     color: #ffffff;
 }
 .btn-theme-primary{
-    background: #1c3c50;
+    background: #504a4a;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -812,8 +812,8 @@ Buttons
 .btn-theme-primary:hover,
 .btn-theme-primary:active,
 .btn-theme-primary:focus{
-    background: #00b6e6;
-    color: #ffffff;
+    background: #ff5151;
+    color: #504a4a;
 }
 .btn-theme-primary-border{
     background: transparent;
@@ -1461,7 +1461,7 @@ nav.navbar ul.nav > li > a:hover,
 nav.navbar ul.nav > li.active > a:hover,
 nav.navbar ul.nav li.active > a,
 nav.navbar li.dropdown ul.dropdown-menu > li a:hover{
-    color: #00b6e6;
+    color: #504a4a;
 }
 
 nav.navbar.navbar-transparent ul.nav > li > a:hover,
@@ -1613,7 +1613,7 @@ footer.main-footer .footer-social ul li{
     margin: 0px 10px;
 }
 footer.main-footer .footer-social ul li a{
-    color: #1098fb;
+    color: #ff5151;
 }
 footer.main-footer.dark-footer .footer-subscribe .form-control{
     background: #243849;
@@ -4240,7 +4240,7 @@ section.counter .counter-item .conter-icon{
     line-height: 65px;
     text-align: center;
     width: 70px;
-    color: #1098fb;
+    color: #ff5151;
 }
 section.counter .counter-item .conter-icon.put-center{
     margin: 0 auto;
@@ -4357,7 +4357,7 @@ Functionalities Section
 
 section.functionalities {
     position: relative;
-    background: #1098fb;
+    background: #504a4a;
 }
 section.functionalities .functionalities-content {
     height: 600px;
@@ -4381,7 +4381,7 @@ section.functionalities .background-left {
 section.functionalities .functionality-item .item-icon {
     background: #ffffff;
     border-radius: 50%;
-    color: #1098fb;
+    color: #ff5151;
     font-size: 40px;
     height: 80px;
     line-height: 80px;
