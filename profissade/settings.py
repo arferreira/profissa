@@ -128,7 +128,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = '/conta/perfil/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_URL = '/'
+LOGIN_URL = '/usuario/identifique-se/'
 
 SESSION_COOKIE_DOMAIN = config('SESSION_COOKIE_DOMAIN')
 SESSION_COOKIE_PORT = config('SESSION_COOKIE_PORT')

@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.views.generic import (FormView,
                                   TemplateView,
-                                  UpdateView)
+                                  UpdateView, RedirectView)
 from django.shortcuts import redirect, get_object_or_404
 from django.core.exceptions import SuspiciousOperation
 from django.contrib.auth import (
@@ -122,8 +122,14 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
                 'accounts:update_profile')
 
 
+class LogoutView(RedirectView):
+    """
+    Provides users the ability to logout
+    """
+    url = '/usuario/identifique-se/'
 
-def logout(request):
-    login_url = settings.LOGIN_URL + '?' + request.GET.urlencode()
-    login_url = resolve_url(login_url)
-    return auth_logout(request, login_url)
+    def get(self, request, *args, **kwargs):
+        auth_logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
+logout = LogoutView.as_view()
