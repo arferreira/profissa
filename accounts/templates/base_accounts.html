@@ -175,13 +175,22 @@
                                     {% endif %}
                                 </div>
                                 <div class="user-info">
-                                    <a href="#">Mariana Rosa</a>
-                                    <p class="text-muted m-0">Plano: Básico</p>
+                                    {% if not request.user.profile.first_name  %}
+                                    <a href="">Novo Profissa</a>
+                                    {% else %}
+                                    <a href="">{{ request.user.profile.first_name  }} {{ request.user.profile.last_name  }}</a>
+                                    {% endif  %}
+                                    {% if not request.user.profile.profider  %}
+                                    <p class="text-muted m-0">CPF: {{ request.user.profile.cpf  }}</p>
+                                    {% else  %}
+                                    <p class="text-muted m-0">Plano: Free</p>
+                                    {% endif  %}
                                 </div>
                             </div>
                             <!--- End User Detail box -->
 
                             <!-- Left Menu Start -->
+                            {% if request.user.profile.provider  %}
                             <ul class="metisMenu nav" id="side-menu">
                                 <li><a href="index.html"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
 
@@ -205,6 +214,24 @@
                                 </li>
                                 <li><a href="index.html"><i class="fa fa-shield"></i> Nota Fiscal de Serviço</a></li>
                             </ul>
+                            {% else  %}
+                            <ul class="metisMenu nav" id="side-menu">
+                                <li><a href="index.html"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
+
+                                <li>
+                                    <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-bookmark-o"></i> Solicitações<span class="fa arrow"></span></a>
+                                    <ul class="nav-second-level nav" aria-expanded="true">
+                                        <li><a href="categorias.html">Solicitaçnoes atendidas</a></li>
+                                        <li><a href="javascript: void(0);">Solicitações em espera</a></li>
+                                        <li><a href="javascript: void(0);">Reclamações</a></li>
+                                        <li><a href="javascript: void(0);">Avaliações</a></li>
+                                        <li><a href="javascript: void(0);">Fale conosco</a></li>
+                                        <li><a href="javascript: void(0);">Sugestões</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="index.html"><i class="fa fa-star"></i> Quero prestar serviços</a></li>
+                            </ul>
+                            {% endif  %}
                         </div>
                     </div><!--Scrollbar wrapper-->
                 </aside>

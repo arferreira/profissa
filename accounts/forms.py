@@ -6,12 +6,16 @@ from accounts.models import Profile
 
 User = get_user_model()
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [
                 'avatar',
+                'first_name',
+                'last_name',
                 'cpf',
                 'rg',
                 'birth_date',
@@ -27,8 +31,13 @@ class ProfileForm(forms.ModelForm):
                 'address',
                 'address_number',
                 'address_remark',
-                'townhouse'
+                'townhouse',
+                'facebook',
+                'provider'
                 ]
+        widgets = {
+            'birth_date': DateInput()
+        }
 
 
 

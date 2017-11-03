@@ -87,6 +87,10 @@ def activate_user_handler(sender, **kwargs):
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile',
                                 on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=250, blank=True, null=False,
+                                  verbose_name='Primeiro Nome')
+    last_name = models.CharField(max_length=250, blank=True, null=False,
+                                  verbose_name='Sobrenome')
     avatar = models.ImageField(upload_to='profile_users/',
                                verbose_name='Avatar')
     bio = models.TextField(max_length=500, verbose_name='Bio',
@@ -111,6 +115,8 @@ class Profile(models.Model):
                                 null=True, verbose_name='Whatsapp')
     telegram = models.CharField(max_length=2, blank=True,
                                 null=True, verbose_name='Telegram')
+    facebook = models.CharField(max_length=500, blank=True, null=True,
+                                verbose_name='Link do seu perfil ou página')
     """
         Location Data
 

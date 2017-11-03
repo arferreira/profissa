@@ -15,7 +15,7 @@ from django.shortcuts import resolve_url
 from simple_email_confirmation.models import EmailAddress
 
 from .models import (User, Profile)
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileForm
 from core.utils import EmailTemplate
 
 
@@ -93,29 +93,15 @@ class LoginView(LoginView):
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template = 'accounts/profile_form.html'
-    fields = [
-            'avatar',
-            'cpf',
-            'rg',
-            'birth_date',
-            'gender',
-            'bio',
-            'phone_number',
-            'whatsapp',
-            'telegram',
-            'zipcode',
-            'country',
-            'state',
-            'city',
-            'address',
-            'address_number',
-            'address_remark',
-            'townhouse'
-            ]
+    form_class = ProfileForm
 
     def get_object(self, *args, **kwargs):
         user = get_object_or_404(User, pk=self.request.user.pk)
         return user.profile
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super(UpdateProfileView, self).post(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse(
