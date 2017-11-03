@@ -9,10 +9,11 @@ from social_django import urls as social_urls
 from core import urls as core_urls
 from accounts import urls as accounts_urls
 from accounts.views import LoginView
-
+from business.views import profile_public
 
 urlpatterns = [
     url(r'^$', include(core_urls, namespace='landing')),
+    url(r'^perfil/$', profile_public),
     url(r'^conta/', include(accounts_urls, namespace='accounts')),
     url(r'^prestador/', include(core_urls, namespace='providers')),
     url(r'^admin/', admin.site.urls),

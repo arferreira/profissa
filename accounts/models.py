@@ -87,12 +87,16 @@ def activate_user_handler(sender, **kwargs):
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile',
                                 on_delete=models.CASCADE)
+    slug = models.CharField(max_length=255, blank=True, null=True,
+                            verbose_name='Apelido', unique=True)
     first_name = models.CharField(max_length=250, blank=True, null=False,
                                   verbose_name='Primeiro Nome')
     last_name = models.CharField(max_length=250, blank=True, null=False,
                                   verbose_name='Sobrenome')
-    avatar = models.ImageField(upload_to='profile_users/',
+    avatar = models.ImageField(upload_to='profile_avatar/',
                                verbose_name='Avatar')
+    skin = models.ImageField(upload_to='profile_skin/',
+                               verbose_name='Skin', null=False, blank=True)
     bio = models.TextField(max_length=500, verbose_name='Bio',
                            blank=True, null=False)
     location = models.CharField(max_length=30, verbose_name='Localização',
