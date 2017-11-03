@@ -1,47 +1,34 @@
-{% extends 'base_login.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block content %}
-<div class="card card-shadowed p-50 w-400 mb-0" style="max-width: 100%">
-        <img src="{% static 'core/images/logoweb.png'  %}" style="margin-left: 40px; height:60px; width:200px;"  alt="">
-      <br><br>
 
-      <form action="."  method="POST" class="form-type-material">
-          {% csrf_token %}
-        <div class="form-group">
-          <input type="text" name="email" class="form-control" placeholder="Email">
+<section style="margin-top:50px;">
+    <div class="form-popup">
+        <div class="form-popup-content">
+            <h4 class="popup-title">
+                <center>
+                    <img src="{% static 'core/images/logoweb.png'  %}" style="margin-left: 40px; height:60px; width:200px;"  alt="">
+                </center> 
+            </h4>
+            <hr class="line-separator">
+            <form action="."  method="POST" class="form-type-material">
+                {% csrf_token %}
+                <label for="email_address2" class="rl-label required">Seu email</label>
+                <input type="email" id="email_address2" name="email" placeholder="Informe seu email...">
+                <label for="username2" class="rl-label">Primeiro nome</label>
+                <input type="text" id="username2" name="first_name" placeholder="Informe seu primeiro nome...">
+                <label for="username2" class="rl-label">Sobrenome</label>
+                <input type="text" id="username2" name="last_name" placeholder="Informe seu sobrenome...">
+                <label for="password2" class="rl-label required">Sua senha</label>
+                <input type="password" id="password2" name="password1" placeholder="Informe sua senha...">
+                <label for="repeat_password2" class="rl-label required">Sua senha novamente</label>
+                <input type="password" id="repeat_password2" name="password2" placeholder="Informe sua senha novamente...">
+                <button class="button mid primary">Criar <span class="primary">conta!</span></button>
+            </form>
+            <hr class="line-separator double">
+            <a href="{% url 'social:begin' 'facebook' %}" class="button mid fb">Conectar com o Facebook</a>
         </div>
-
-        <div class="form-group">
-          <input type="text" name="first_name" class="form-control" placeholder="Primeiro Nome">
-        </div>
-        <div class="form-group">
-          <input type="text" name="last_name" class="form-control" placeholder="Último Nome">
-        </div>
-
-        <div class="form-group">
-          <input type="password" name="password1" class="form-control" placeholder="Senha">
-        </div>
-
-        <div class="form-group">
-          <input type="password" name="password2" class="form-control" placeholder="Senha (confirmação)">
-        </div>
-
-
-        <br>
-        <button class="btn btn-bold btn-block btn-primary" type="submit">Criar conta</button>
-      </form>
-
-      <div class="divider">Conecte-se com:</div>
-      <div class="text-center">
-          <a class="btn btn-circular btn-sm btn-facebook mr-4" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook"></i></a>
-          <a class="btn btn-circular btn-sm btn-google mr-4" href="#"><i class="fa fa-google"></i></a>
-          <a class="btn btn-circular btn-sm btn-twitter" href="#"><i class="fa fa-twitter"></i></a>
-      </div>
-
-      <p class="text-center text-muted fs-13 mt-20">Já possui sua conta? <a class="text-primary" href="{% url 'login'  %}">Minha conta</a></p>
-  </div>
-
-
-</div>
+    </div>
+</section>
 {% endblock %}

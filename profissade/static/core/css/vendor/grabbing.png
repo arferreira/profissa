@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="http://www.odindesign-themes.com/">
+	<meta charset="UTF-8">
+	<title>404 - Not Found</title>
+	<!-- favicon -->
+	<link rel="icon" href="favicon.ico">
+</head>
+<body>
+	<h1>Oops!, the page you were looking for doesn't exist</h1>
+	<a href="">Go to our home page</a>
+</body>
+</html>

@@ -1,205 +1,256 @@
-{% extends "base_accounts.html" %}
+{% extends "base_dashboard.html" %}
 {% block title  %}Perfil - Zummbee{% endblock  %}
 {% load widget_tweaks %}
 {% load staticfiles  %}
 {% block content %}
-                <!-- START PAGE CONTENT -->
-                <div id="page-right-content">
+<!-- DASHBOARD BODY -->
+<div class="dashboard-body">
+    <!-- DASHBOARD HEADER -->
+    <div class="dashboard-header retracted">
+        <!-- DB CLOSE BUTTON -->
+        <a href="index.html" class="db-close-button">
+            <img src="images/dashboard/back-icon.png" alt="back-icon">
+        </a>
+        <!-- DB CLOSE BUTTON -->
 
-                    <div class="container">
+        <!-- DB OPTIONS BUTTON -->
+        <div class="db-options-button">
+            <img src="{% static 'core/images/dashboard/db-list-right.png' %}" alt="db-list-right">
+            <img src="{% static 'core/images/dashboard/close-icon.png' %}" alt="close-icon">
+        </div>
+        <!-- DB OPTIONS BUTTON -->
 
-                        <!-- Personal-Information -->
-                                    <div class="panel panel-default panel-fill">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">Não deixe de preencher ;)</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <form method="POST" enctype="multipart/form-data">
-                                                {% csrf_token %}
-                                                {% for error in form.non_field_errors  %}
-                                                <div class="alert alert-danger">
-                                                    {{ error  }}
-                                                </div>
-                                                {% endfor  %}
+        <!-- DASHBOARD HEADER ITEM -->
+        <div class="dashboard-header-item title">
+            <h6> <img src="{% static 'core/images/logo_full.png' %}" style="width:200px; height:60px;"></h6>
+        </div>
+        <div class="dashboard-header-item back-button">
+            <a href="{% url 'landing:provider' %}" class="button mid dark-light">Voltar para a página inicial</a>
+        </div>
+        <!-- /DASHBOARD HEADER ITEM -->
+    </div>
+    <!-- DASHBOARD HEADER -->
 
-                                                {% for hidden in form.hidden_fields %}
-                                                {{ hidden }}
-                                                {% endfor %}
-                                                <!--Avatar-->
-                                                <div class="row">
-                                                <div class="form-group{% if form.avatar.errors  %} has-error{% endif %}">
-                                                    <label for="{{ form.avatar.label  }}" style="color:black;"></label>
-                                                    <div class="col-md-3">
-                                                        <div class="text-center">
-                                                            {% if not request.user.profile.avatar  %}
-                                                            <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                                                            {% else  %}
-                                                            <img src="{{ request.user.profile.avatar.url }}" class="avatar img-circle" style="width:100px; height:100px;"  alt="avatar">
-                                                            {% endif  %}
-                                                            <br /><br />
-                                                            <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Procurar</span>
-                                                            <input type="file" name="avatar"  class="form-control" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;">
-                                                        </div>
-                                                    </div>
-                                                    {% for error in form.avatar.errors  %}
-                                                    <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                    {% endfor  %}
-                                                    <div class="col-md-9">
-                                                        <p>Sua foto é seu cartão de visita pessoal, envie uma foto clara e frontal do seu rosto, uma maneira importante para clientes e prestadores de serviço se conhecerem. Evite colocar informações pessoais em suas fotos de perfil.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br /><br />
-                                                <!--Dados Pessoais -->
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6{% if form.first_name.errors  %} has-error{% endif %}">
-                                                        <label for="FullName">Primeiro Nome</label>
-                                                        {% render_field form.first_name class="form-control" placeholder="Primeiro Nome"  %}
-                                                        {% for error in form.first_name.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.last_name.errors  %} has-error{% endif %}">
-                                                        <label for="FullName">Sobrenome</label>
-                                                        {% render_field form.last_name class="form-control" placeholder="Sobrenome"  %}
-                                                        {% for error in form.last_name.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.cpf.errors  %} has-error{% endif %}">
-                                                        <label for="Cpf">CPF</label>
-                                                        {% render_field form.cpf class="form-control" placeholder=form.cpf.label %}
-                                                        {% for error in form.cpf.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.rg.errors  %} has-error{% endif %}">
-                                                        <label for="RG">RG</label>
-                                                        {% render_field form.rg class="form-control" placeholder=form.rg.label %}
-                                                        {% for error in form.rg.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.gender.errors  %} has-error{% endif %}">
-                                                        <label for="Gender">Gênero</label>
-                                                        {{ form.gender|add_class:'form-control' }}
-                                                        {% for error in form.gender.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.birth_date.errors  %} has-error{% endif %}">
-                                                        <label for="BirthDate">Data de Nascimento: <span style="color:green;">{{ form.birth_date.value  }}</span></label>
-                                                        {% render_field form.birth_date class="form-control date-input" type="date" value="form.birth_date.value" %}
-                                                        {% for error in form.birth_date.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-12{% if form.bio.errors  %} has-error{% endif %}">
-                                                        <label for="Bio">Conte-nos sobre você</label>
-                                                        {{ form.bio|add_class:'form-control'  }}
-                                                        {% for error in form.bio.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <!--Dados Pessoais 2 -->
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6{% if form.phone_number.errors  %} has-error{% endif %}">
-                                                        <label for="PhoneNumber">Telefone</label>
-                                                        {% render_field form.phone_number class="form-control" placeholder="Seu telefone principal"  %}
-                                                        {% for error in form.phone_number.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.whatsapp.errors  %} has-error{% endif %}">
-                                                        <label for="Whatsapp">Whatsapp</label>
-                                                        {% render_field form.whatsapp class="form-control" placeholder="Seu whatsapp"  %}
-                                                        {% for error in form.whatsapp.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.telegram.errors  %} has-error{% endif %}">
-                                                        <label for="Telegram">Tem Telegram?</label>
-                                                        {% render_field form.telegram class="form-control" placeholder="Informe seu telegram para receber notificações" %}
-                                                        {% for error in form.telegram.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.facebook.errors  %} has-error{% endif %}">
-                                                        <label for="Facebook">Perfil/Página do Facebook</label>
-                                                        {% render_field form.facebook class="form-control" placeholder="Informe o link do seu perfil ou página no facebook" %}
-                                                        {% for error in form.facebook.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <!--Dados de Endereço -->
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6{% if form.zipcode.errors  %} has-error{% endif %}">
-                                                        <label for="Cep">CEP</label>
-                                                        <input type="text" id="CEP" name="zipcode" class="form-control" placeholder="Seu CEP">
-                                                        {% for error in form.zipcode.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-6{% if form.city.errors  %} has-error{% endif %}">
-                                                        <label for="City">Onde você mora?</label>
-                                                        <select id="City" name="city" class="form-control">
-                                                            <option value="Campo Grande">Campo Grande - MS</option>
-                                                        </select>
-                                                        {% for error in form.city.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-12{% if form.address.errors  %} has-error{% endif %}">
-                                                        <label for="Address">Seu endereço</label>
-                                                        <input type="text" id="Address" name="address" class="form-control">
-                                                        {% for error in form.address.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-4{% if form.address_number.errors  %} has-error{% endif %}">
-                                                        <label for="AddressNumber">Número</label>
-                                                        <input type="text" id="AddressNumber" name="address_number" class="form-control">
-                                                        {% for error in form.address_number.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-4{% if form.address_remark.errors  %} has-error{% endif %}">
-                                                        <label for="AddressRemark">Observação</label>
-                                                        <input type="text" id="AddressRemark" name="address_remark" class="form-control">
-                                                        {% for error in form.address_remark.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group col-md-4{% if form.townhouse.errors  %} has-error{% endif %}">
-                                                        <label for="Townhouse">Bairro</label>
-                                                        <input type="text" id="Townhouse" name="townhouse" class="form-control">
-                                                        {% for error in form.townhouse.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                    <div class="form-group{% if form.provider.errors %} has-error{% endif %}">
-                                                        <label for="provider">Você é prestador de serviços?</label>
-                                                        {{ form.provider|add_class:'form-control' }}
-                                                        {% for error in form.provider.errors  %}
-                                                        <span class="help-block" style="color:red;">{{ error  }}</span>
-                                                        {% endfor  %}
-                                                    </div>
-                                                </div>
+    <!-- DASHBOARD CONTENT -->
+    <div class="dashboard-content">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for error in form.non_field_errors  %}
+            <div class="alert alert-danger">
+                {{ error  }}
+            </div>
+            {% endfor  %}
 
-                                                <hr />
-                                                <div class="form-group">
-                                                    <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Atualizar</button>
-                                                </div>
-                                            </form>
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+            <!-- HEADLINE -->
+            <div class="headline buttons primary">
+                <h4>Não deixe de completar o seu perfil ;)</h4>
+                <button class="button mid-short primary">Salvar alterações</button>
+            </div>
+            <!-- /HEADLINE -->
 
-                                        </div>
-                                    </div>
-                                    <!-- Personal-Information -->
+            <!-- FORM BOX ITEMS -->
+            <div class="form-box-items">
+                <div class="form-box-item">
+                    <h4>Informação profissional</h4>
+                    <hr class="line-separator">
+                    <div class="form-group{% if form.provider.errors %} has-error{% endif %}">
+                        <label for="provider">Você é prestador de serviços?</label>
+                        {{ form.provider|add_class:'form-control' }}
+                        {% for error in form.provider.errors  %}
+                        <span class="help-block" style="color:red;">{{ error  }}</span>
+                        {% endfor  %}
                     </div>
-                    <!-- end container -->
+                </div>
+                <!-- FORM BOX ITEM -->
+                <div class="form-box-item">
+                    <h4>Dados pessoais</h4>
+                    <hr class="line-separator">
+                    <!-- PROFILE IMAGE UPLOAD -->
+                    <!--Avatar-->
+                    <div class="form-group{% if form.avatar.errors  %} has-error{% endif %}" style="border:1px solid #ccc; padding:10px;">
+                        <label for="{{ form.avatar.label  }}" style="color:black;"></label>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                {% if not request.user.profile.avatar  %}
+                                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                {% else  %}
+                                <img src="{{ request.user.profile.avatar.url }}" class="avatar img-circle" style="width:100px; height:100px;"  alt="avatar">
+                                {% endif  %}
+                                <br /><br />
+                                <span class="button mid-short primary" onclick="$(this).parent().find('input[type=file]').click();">Procurar</span>
+                                <input type="file" name="avatar"  class="form-control" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;">
+                            </div>
+                        </div>
+                        {% for error in form.avatar.errors  %}
+                        <span class="help-block" style="color:red;">{{ error  }}</span>
+                        {% endfor  %}
+                        <br />
+                        <div class="" style="">
+                            <p>Sua foto é seu cartão de visita pessoal, envie uma foto clara e frontal do seu rosto, uma maneira importante para clientes e prestadores de serviço se conhecerem. Evite colocar informações pessoais em suas fotos de perfil.</p>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <!-- PROFILE IMAGE UPLOAD -->
 
+                    <!--Dados Pessoais -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6{% if form.first_name.errors  %} has-error{% endif %}">
+                            <label for="FullName">Primeiro Nome</label>
+                            {% render_field form.first_name class="form-control" placeholder="Primeiro Nome"  %}
+                            {% for error in form.first_name.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.last_name.errors  %} has-error{% endif %}">
+                            <label for="FullName">Sobrenome</label>
+                            {% render_field form.last_name class="form-control" placeholder="Sobrenome"  %}
+                            {% for error in form.last_name.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.cpf.errors  %} has-error{% endif %}">
+                            <label for="Cpf">CPF</label>
+                            {% render_field form.cpf class="form-control" placeholder=form.cpf.label %}
+                            {% for error in form.cpf.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.rg.errors  %} has-error{% endif %}">
+                            <label for="RG">RG</label>
+                            {% render_field form.rg class="form-control" placeholder=form.rg.label %}
+                            {% for error in form.rg.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.gender.errors  %} has-error{% endif %}">
+                            <label for="Gender">Gênero</label>
+                            {{ form.gender|add_class:'form-control' }}
+                            {% for error in form.gender.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.birth_date.errors  %} has-error{% endif %}">
+                            <label for="BirthDate">Data de Nascimento: <span style="color:green;">{{ form.birth_date.value  }}</span></label>
+                            {% render_field form.birth_date class="form-control date-input" type="date" value="form.birth_date.value" %}
+                            {% for error in form.birth_date.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-12{% if form.bio.errors  %} has-error{% endif %}">
+                            <label for="Bio">Conte-nos sobre você</label>
+                            {{ form.bio|add_class:'form-control'  }}
+                            {% for error in form.bio.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                    </div>
+                </div>
+                <!-- /FORM BOX ITEM -->
+
+                <!-- FORM BOX ITEM -->
+                <div class="form-box-item spaced">
+                    <h4>Informações de contato</h4>
+                    <hr class="line-separator">
+                    <!--Dados Pessoais 2 -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6{% if form.phone_number.errors  %} has-error{% endif %}">
+                            <label for="PhoneNumber">Telefone</label>
+                            {% render_field form.phone_number class="form-control" placeholder="Seu telefone principal"  %}
+                            {% for error in form.phone_number.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.whatsapp.errors  %} has-error{% endif %}">
+                            <label for="Whatsapp">Whatsapp</label>
+                            {% render_field form.whatsapp class="form-control" placeholder="Seu whatsapp"  %}
+                            {% for error in form.whatsapp.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.telegram.errors  %} has-error{% endif %}">
+                            <label for="Telegram">Tem Telegram?</label>
+                            {% render_field form.telegram class="form-control" placeholder="Informe seu telegram para receber notificações" %}
+                            {% for error in form.telegram.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.facebook.errors  %} has-error{% endif %}">
+                            <label for="Facebook">Perfil/Página do Facebook</label>
+                            {% render_field form.facebook class="form-control" placeholder="Informe o link do seu perfil ou página no facebook" %}
+                            {% for error in form.facebook.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                    </div>
+
+                    <!-- /INPUT CONTAINER -->
+                </div>
+                <!-- /FORM BOX ITEM -->
+
+                <!-- FORM BOX ITEM -->
+                <div class="form-box-item">
+                    <h4>Informações de localização</h4>
+                    <hr class="line-separator">
+                    <!-- INPUT CONTAINER -->
+                    <!--Dados de Endereço -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6{% if form.zipcode.errors  %} has-error{% endif %}">
+                            <label for="Cep">CEP</label>
+                            <input type="text" id="CEP" name="zipcode" class="form-control" placeholder="Seu CEP">
+                            {% for error in form.zipcode.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-6{% if form.city.errors  %} has-error{% endif %}">
+                            <label for="City">Onde você mora?</label>
+                            <select id="City" name="city" class="form-control">
+                                <option value="Campo Grande">Campo Grande - MS</option>
+                            </select>
+                            {% for error in form.city.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-12{% if form.address.errors  %} has-error{% endif %}">
+                            <label for="Address">Seu endereço</label>
+                            <input type="text" id="Address" name="address" class="form-control">
+                            {% for error in form.address.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-4{% if form.address_number.errors  %} has-error{% endif %}">
+                            <label for="AddressNumber">Número</label>
+                            <input type="text" id="AddressNumber" name="address_number" class="form-control">
+                            {% for error in form.address_number.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-4{% if form.address_remark.errors  %} has-error{% endif %}">
+                            <label for="AddressRemark">Observação</label>
+                            <input type="text" id="AddressRemark" name="address_remark" class="form-control">
+                            {% for error in form.address_remark.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                        <div class="form-group col-md-4{% if form.townhouse.errors  %} has-error{% endif %}">
+                            <label for="Townhouse">Bairro</label>
+                            <input type="text" id="Townhouse" name="townhouse" class="form-control">
+                            {% for error in form.townhouse.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /FORM BOX ITEM -->
+            </form>
+
+        </div>
+        <!-- /FORM BOX -->
+    </div>
+    <!-- DASHBOARD CONTENT -->
+</div>
+<!-- /DASHBOARD BODY -->
 {% endblock %}

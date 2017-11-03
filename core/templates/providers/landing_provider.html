@@ -1,295 +1,523 @@
-{% extends 'base_core.html'  %}
+{% extends 'base.html'  %}
 {% load staticfiles  %}
-{% block title  %}a melhor plataforma para prestadores de serviços{% endblock  %}
+{% block title  %} a melhor plataforma para prestadores de serviços{% endblock  %}
 {% block content  %}
-<header>
 
-            <nav class="navbar navbar-default navbar-sticky bootsnav">
-                <div class="container"> 
-                    <div class="attr-nav">
-                        <ul>
-                            <li><a href="{% url 'login' %}">ENTRAR</a></li>
-                        </ul>
-                        <ul>
-                    </div>
-                    <div class="navbar-header" style="height:90px;">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="#brand"><img src="{% static 'core/images/logoweb.png' %}" style="width:180px; margin-top: 16px;" class="logo" alt=""></a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right" style="margin-top:13px;" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li><a href="login.html">SOBRE</a></li>
-							<li><a href="login.html">FAQ</a></li>
-							<li><a href="login.html">CONTATO</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="side">
-                    <a href="#" class="close-side"><i class="ti-close"></i></a>
-                </div>
-            </nav>
+<!-- HEADER -->
+	<div class="header-wrap">
+		<header>
+			<!-- LOGO -->
+            <a href="{% url 'landing:provider' %}">
+				<figure class="logo">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO -->
 
-        </header> 
-        <section class="main-cover cover-style-alt" style="background:#f8f8f8;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="cover-info text-center">
-                            <h2><span class="landing_provider"></span></h2>
-                            <p style="font-size:20px;">Nós vamos mostrar o caminho para inovar o seu negócio e modernizar o seu relacionamento com clientes. </p>
-                            <a href="{% url 'accounts:registration'  %}" class="btn btn-theme-primary">vamos começar ?</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-                        <img src="{% static 'core/images/result.png' %}" class="img-responsive" alt="image">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="call-to-action action-light  pt-40 pb-20">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9 col-sm-8 col-xs-12">
-                        <div class="action-content text-left ptb-20">
-                            <h2>Já imaginou possuir um assistente virtual que se relacione com seus clientes ?</h2>
-                            <p>Gerenciar seu negócio e cuidar de seus clientes não é complicado. Nós ajudamos profissionais a organizar todo seu negócio de forma segura e totalmente online.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-12 ptb-20">
-                        <div class="action-button">
-                            <a href="#" class="btn btn-theme-primary">Cadastre-se grátis</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="feature ptb-80 overlay-white">
-            <h3 class="hide">Funcionalidades</h3>
-            <div class="col-md-6 col-md-push-6 feature-image no-padding scrollme">
-                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="300">
-                    <div class="top-bar">
-                        <ul class="lights">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="frame">
-                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
-                    </div>
-                </div>
-            </div>
-            <div class="container feature-desc">
-                <div class="row">
-                    <div class="col-md-5 feature-info">
-                        <article>
-                            <h4 class="mb-30">Sempre com você</h4>
-                            <h5 class="heading-thin mb-10 text-uppercase">24 horas por dia, 7 dias por semana.</h5>
-                            <p class="mb-50">Uma assistente incrível para te ajudar a cuidar de suas despesas e recebimentos.<br /> Orçamentos, ordens de serviço e agendamentos onde você estiver e online.</p>
-                            <h5 class="heading-thin mb-10 text-uppercase">Traga o seu mundo</h5>
-                            <p>Esqueça soluções com foco em vendas, traga o seu negócio para o profissa.de e deixe que ele trabalhe para você.<br /> Você terá tempo para buscar melhorias em sua prestação de serviços.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="feature ptb-80">
-            <h3 class="hide">Funcionalidades</h3>
-            <div class="col-md-6 feature-image no-padding scrollme">
-                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="-300">
-                    <div class="top-bar">
-                        <ul class="lights">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="frame">
-                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
-                    </div>
-                </div>
-            </div>
-            <div class="container feature-desc">
-                <div class="row">
-                    <div class="col-md-5 col-md-push-7 feature-info">
-                        <article>
-                            <h4 class="mb-30">Segurança é tudo</h4>
-                            <h5 class="heading-thin mb-10 text-uppercase">Conheça seu cliente</h5>
-                            <p class="mb-50">Nós acreditamos muito em nossos clientes, fomentamos uma comunidade segura e honesta, para que sempre possamos prover um excelente serviço com máxima segurança.</p>
-                            <h5 class="heading-thin mb-10 text-uppercase">Clientes e Profissionais</h5>
-                            <p> Ambos nos enviam a digitalização de seus documentos originais, e ainda podem conectar-se através de seus perfis sociais, onde tudo se torna transparente.</p>
-                            
-                        </article>
+			<!-- MOBILE MENU HANDLER -->
+			<div class="mobile-menu-handler left primary">
+                <img src="{% static 'core/images/pull-icon.png' %}" alt="pull-icon">
+			</div>
+			<!-- /MOBILE MENU HANDLER -->
 
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="feature ptb-80 overlay-white">
-            <h3 class="hide">Funcionalidades</h3>
-            <div class="col-md-6 col-md-push-6 feature-image no-padding scrollme">
-                <div class="browser animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="300">
-                    <div class="top-bar">
-                        <ul class="lights">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="frame">
-                        <img class="img-responsive" alt="" src="{% static 'core/images/builder-hero.png' %}">
-                    </div>
-                </div>
+			<!-- LOGO MOBILE -->
+            <a href="{% url 'landing:provider' %}">
+				<figure class="logo-mobile">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO MOBILE -->
 
-            </div>
-            <div class="container feature-desc">
-                <div class="row">
-                    <div class="col-md-5 feature-info">
-                        <article>
-                            <h4 class="mb-30">Atendimentos de alto impacto</h4>
-                            <h5 class="heading-thin mb-10">Uma plataforma que se molda ao comportamento das pessoas, nosso agente inteligente foi criado para automatizar suas tarefas em atendimentos, agendamentos, e comunicação.</h5>
-                            <h5 class="heading-thin mb-10">A automatização destes processos, resulta em uma economia enorme de tempo e recursos.</h5><br />
-                            <h4 class="mb-30">Assistente virtual</h4>
-                            <h5 class="heading-thin mb-10"> Através de nosso assistente virtual, seu negócio conseguirá atender seus clientes de forma mais rápida e eficiente, inclusive cuidará de seus recebimentos para você.</h5>
-                        </article>
+			<!-- MOBILE ACCOUNT OPTIONS HANDLER -->
+			<div class="mobile-account-options-handler right secondary">
+				<span class="icon-user"></span>
+			</div>
+			<!-- /MOBILE ACCOUNT OPTIONS HANDLER -->
+            {% if request.user.is_authenticated %}
+			<!-- USER BOARD -->
+			<div class="user-board">
+				<!-- USER QUICKVIEW -->
+				<div class="user-quickview">
+					<!-- USER AVATAR -->
+					<a href="">
+					<div class="outer-ring">
+						<div class="inner-ring"></div>
+						<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+						</figure>
+					</div>
+					</a>
+					<!-- /USER AVATAR -->
 
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="functionalities" id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-6 col-sm-12 col-xs-12">
-                        <div class="functionalities-content">
-                            <div class="functionality-item ptb-20">
-                                <div class="media-left">
-                                    <div class="item-icon">
-                                        <span class="fa fa-bank"></span>
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <h5>Troque pontos com seus clientes </h5>
-                                    <p>Quando você conclui um serviço nós descontamos 1 "ponto" de você e passamos ao seu cliente, e você pode criar ofertas com descontos em seus serviços para receber mais pontos de seus clientes, rápido e fácil. </p>
-                                </div>
-                            </div>
-                            <div class="functionality-item ptb-20">
-                                <div class="media-left">
-                                    <div class="item-icon">
-                                        <span class="fa fa-money"></span>
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <h5> R$ 0,99 por serviço </h5>
-                                    <p>Não é incrível, 1 ponto vale menos que R$ 1,00. Só descontamos seus pontos assim que o serviço for finalizado. </p>
-                                </div>
-                            </div>
-                            <div class="functionality-item ptb-20">
-                                <div class="media-left">
-                                    <div class="item-icon">
-                                        <span class="fa fa-id-badge"></span>
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <h5>Sua reputação </h5>
-                                    <p>Nós iremos sempre dar dicas a você para deixar sua reputação em alto nível e ser recomendado com muita frequência na comunidade profissa</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="background-left"></div>
-            </div>
-        </section>
-        <section class="counter overlay-white ptb-80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="counter-item text-center">
-                            <div class="conter-icon put-center">
-                                <span class="fa fa-users"></span>
-                            </div>
-                            <h3>
-                                <span class="count">554</span>
-                            </h3>
-                            <h6>Clientes</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="counter-item text-center">
-                            <div class="conter-icon put-center">
-                                <span class="fa fa-gamepad"></span>
-                            </div>
-                            <h3>
-                                <span class="count">2580</span>
-                            </h3>
-                            <h6>Pontos negociados</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="counter-item text-center">
-                            <div class="conter-icon put-center">
-                                <span class="fa fa-check"></span>
-                            </div>
-                            <h3>
-                                <span class="count">580</span>
-                            </h3>
-                            <h6>Serviços finalizados</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="counter-item text-center">
-                            <div class="conter-icon put-center">
-                                <span class="fa fa-user-o"></span>
-                            </div>
-                            <h3>
-                                <span class="count">1586</span>
-                            </h3>
-                            <h6>Profissionais</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer class="main-footer light-footer pt-60 pb-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="footer-copy ptb-30">
-                            <p>profissa.de <span class="fa fa-heart"></span> 2017 | A melhor plataforma para prestadores de serviços </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="footer-social ptb-30">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <span class="fa fa-facebook"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fa fa-linkedin"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fa fa-google"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+					<!-- USER INFORMATION -->
+					<p class="user-name">Mariana Rosa</p>
+					<!-- SVG ARROW -->
+					<svg class="svg-arrow">
+						<use xlink:href="#svg-arrow"></use>
+					</svg>
+					<!-- /SVG ARROW -->
+					<p class="user-money">50 pontos</p>
+					<!-- /USER INFORMATION -->
+
+					<!-- DROPDOWN -->
+					<ul class="dropdown small hover-effect closed">
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+							<a href="">Perfil</a>
+						</li>
+						<li class="dropdown-item">
+							<a href="">Configurações</a>
+						</li>
+						<li class="dropdown-item">
+							<a href="">Solicitações</a>
+						</li>
+						<li class="dropdown-item">
+                            <a href="{% url 'logout' %}">Sair</a>
+						</li>
+					</ul>
+					<!-- /DROPDOWN -->
+				</div>
+				<!-- /USER QUICKVIEW -->
+
+				<!-- ACCOUNT INFORMATION -->
+				<div class="account-information">
+					<a href="favourites.html">
+						<div class="account-wishlist-quickview">
+							<span class="icon-heart"></span>
+						</div>
+					</a>
+					<div class="account-email-quickview">
+						<span class="icon-envelope">
+							<!-- SVG ARROW -->
+							<svg class="svg-arrow">
+								<use xlink:href="#svg-arrow"></use>
+							</svg>
+							<!-- /SVG ARROW -->
+						</span>
+
+						<!-- PIN -->
+						<span class="pin soft-edged secondary">!</span>
+						<!-- /PIN -->
+
+						<!-- DROPDOWN NOTIFICATIONS -->
+						<ul class="dropdown notifications closed">
+							<!-- DROPDOWN ITEM -->
+							<li class="dropdown-item">
+								<div class="dropdown-triangle"></div>
+								<a href="dashboard-openmessage.html" class="link-to"></a>
+								<figure class="user-avatar">
+                                    <img src="{% static 'core/images/avatars/avatar_06.jpg' %}" alt="">
+								</figure>
+								<p class="text-header tiny"><span>Sarah-Imaginarium</span></p>
+								<p class="subject">Product Question</p>
+								<p class="timestamp">May 18th, 2014</p>
+								<span class="notification-type secondary-new icon-envelope"></span>
+							</li>
+							<!-- /DROPDOWN ITEM -->
+
+							<!-- DROPDOWN ITEM -->
+							<li class="dropdown-item">
+								<a href="dashboard-openmessage.html" class="link-to"></a>
+								<figure class="user-avatar">
+                                    <img src="{% static 'core/images/avatars/avatar_04.jpg' %}" alt="">
+								</figure>
+								<p class="text-header tiny"><span>Red Thunder Graphics</span></p>
+								<p class="subject">Support Inquiry</p>
+								<p class="timestamp">May 5th, 2014</p>
+								<span class="notification-type icon-envelope-open"></span>
+							</li>
+							<!-- /DROPDOWN ITEM -->
+						</ul>
+						<!-- /DROPDOWN NOTIFICATIONS -->
+					</div>
+				</div>
+				<!-- /ACCOUNT INFORMATION -->
+			</div>
+            <!-- /USER BOARD -->
+            {% else  %}
+				<!-- ACCOUNT ACTIONS -->
+				<div class="account-actions">
+                    <a href="{% url 'accounts:registration' %}" class="button primary">Criar conta</a>
+                    <a href="{% url 'login'  %}" class="button secondary">Entrar</a>
+				</div>
+				<!-- /ACCOUNT ACTIONS -->
+            {% endif  %}
+		</header>
+	</div>
+	<!-- /HEADER -->
+
+	<!-- SIDE MENU -->
+	<div id="mobile-menu" class="side-menu left closed">
+		<!-- SVG PLUS -->
+		<svg class="svg-plus">
+			<use xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+
+
+
+		<!-- SIDE MENU TITLE -->
+		<p class="side-menu-title">Menu Principal</p>
+		<!-- /SIDE MENU TITLE -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect interactive">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="index.html">Criar conta</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="how-to-shop.html">Entrar</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+
+
+
+		</ul>
+		<!-- /DROPDOWN -->
+	</div>
+	<!-- /SIDE MENU -->
+
+	<!-- SIDE MENU -->
+	<div id="account-options-menu" class="side-menu right closed">
+		<!-- SVG PLUS -->
+		<svg class="svg-plus">
+			<use xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+
+		<!-- SIDE MENU HEADER -->
+		<div class="side-menu-header">
+			<!-- USER QUICKVIEW -->
+			<div class="user-quickview">
+				<!-- USER AVATAR -->
+				<a href="author-profile.html">
+				<div class="outer-ring">
+					<div class="inner-ring"></div>
+					<figure class="user-avatar">
+                        <img src="{% static 'core/images/avatars/avatar_01.jpg' %}" alt="avatar">
+					</figure>
+				</div>
+				</a>
+				<!-- /USER AVATAR -->
+
+				<!-- USER INFORMATION -->
+				<p class="user-name">Mariana Rosa</p>
+				<p class="user-money">CPF: 020.214.191-85</p>
+				<!-- /USER INFORMATION -->
+			</div>
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- SIDE MENU TITLE -->
+		<p class="side-menu-title">Sua conta</p>
+		<!-- /SIDE MENU TITLE -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-notifications.html">Perfil</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-inbox.html">Configurações</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="cart.html">Solicitações</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+
+		</ul>
+		<!-- /DROPDOWN -->
+
+
+		</ul>
+		<!-- /DROPDOWN -->
+
+		<a href="#" class="button medium secondary">Entrar</a>
+		<a href="#" class="button medium primary">Prestador de Serviço</a>
+	</div>
+	<!-- /SIDE MENU -->
+
+
+	<!-- BANNER -->
+	<div class="banner-wrap">
+		<section class="banner">
+			<h1>A melhor plataforma para <span>prestadores de serviços!</span></h1>
+			<p>Nós vamos mostrar o caminho para inovar o seu negócio e modernizar o seu relacionamento com clientes.</p>
+            <img src="{% static 'core/images/top_items.png' %}" alt="banner-img">
+
+
+		</section>
+	</div>
+	<!-- /BANNER -->
+
+	<!-- SERVICES -->
+	<div id="services-wrap">
+		<section id="services">
+			<!-- SERVICE LIST -->
+			<div class="service-list column4-wrap">
+
+				<!-- SERVICE ITEM -->
+				<div class="service-item column">
+					<div class="circle medium gradient"></div>
+					<div class="circle white-cover"></div>
+					<div class="circle dark">
+						<span class="icon-calendar" style="color:white;"></span>
+					</div>
+					<h3>Use totalmente grátis</h3>
+					<p>Uma assistente incrível para te ajudar a cuidar de suas despesas e recebimentos.
+Orçamentos, ordens de serviço e agendamentos onde você estiver e online.</p>
+				</div>
+				<!-- /SERVICE ITEM -->
+
+				<!-- SERVICE ITEM -->
+				<div class="service-item column">
+					<div class="circle medium gradient"></div>
+					<div class="circle white-cover"></div>
+					<div class="circle dark">
+						<span class="icon-grid" style="color:white;"></span>
+					</div>
+					<h3>Perfil Público</h3>
+					<p>Esqueça soluções com foco em vendas, traga o seu negócio para o profissa.de e deixe que ele trabalhe para você, através de seu perfil.
+Você terá tempo para buscar melhorias em sua prestação de serviços.</p>
+				</div>
+				<!-- /SERVICE ITEM -->
+
+				<!-- SERVICE ITEM -->
+				<div class="service-item column">
+					<div class="circle medium gradient"></div>
+					<div class="circle white-cover"></div>
+					<div class="circle dark">
+						<span class="icon-lock" style="color:white;"></span>
+					</div>
+					<h3>Segurança é tudo</h3>
+					<p>Nós acreditamos muito em nossos clientes e fomentamos uma comunidade segura e honesta. Ambos nos enviam a digitalização de seus documentos originais, e ainda podem conectar-se através de seus perfis sociais, onde tudo se torna transparente.</p>
+				</div>
+				<!-- /SERVICE ITEM -->
+
+				<!-- SERVICE ITEM -->
+				<div class="service-item column">
+					<div class="circle medium gradient"></div>
+					<div class="circle white-cover"></div>
+					<div class="circle dark">
+						<span class="icon-diamond" style="color:white;"></span>
+					</div>
+					<h3>Atendimentos de alto impacto</h3>
+					<p>Uma plataforma que se molda ao comportamento das pessoas, nosso agente inteligente foi criado para automatizar suas tarefas em atendimentos, agendamentos, e comunicação.</p>
+				</div>
+				<!-- /SERVICE ITEM -->
+			</div>
+			<!-- /SERVICE LIST -->
+			<div class="clearfix"></div>
+		</section>
+	</div>
+	<!-- /SERVICES -->
+
+
+	<div class="clearfix"></div>
+
+	<div class="ht-banner-wrap">
+			<!-- HT BANNER -->
+			<div class="ht-banner void violet">
+				<figure class="ht-banner-img1">
+                    <img src="{% static 'core/images/how_to_shop_01.png' %}" alt="">
+				</figure>
+			</div>
+			<!-- /HT BANNER -->
+
+			<!-- HT BANNER -->
+			<div class="ht-banner">
+				<!-- HT BANNER CONTENT -->
+				<div class="ht-banner-content">
+					<p class="text-header">Seu perfil</p>
+					<p>Complete seu perfil e passe segurança a seus clientes, a primeira impressão é a que fica. Com informações transparentes e claras nós poderemos indicar você para clientes que estão em busca de serviços em seu segmento.</p>
+				</div>
+				<!-- /HT BANNER CONTENT -->
+			</div>
+			<!-- /HT BANNER -->
+
+			<!-- HT BANNER -->
+			<div class="ht-banner void pink">
+				<figure class="ht-banner-img2">
+                    <img src="{% static 'core/images/how_to_shop_02.png' %}" alt="">
+				</figure>
+			</div>
+			<!-- /HT BANNER -->
+
+			<!-- HT BANNER -->
+			<div class="ht-banner">
+				<!-- HT BANNER CONTENT -->
+				<div class="ht-banner-content">
+					<p class="text-header">Organize a casa</p>
+					<p>Agora você dispõe de uma plataforma que te dá todo o controle financeiro de seu negócio, como também controle de ordens de serviço e agendamentos realizados pelos seus clientes de forma automatizada.</p>
+
+				</div>
+				<!-- /HT BANNER CONTENT -->
+			</div>
+			<!-- /HT BANNER -->
+
+			<!-- HT BANNER -->
+			<div class="ht-banner void blue">
+				<figure class="ht-banner-img3">
+                    <img src="{% static 'core/images/how_to_shop_03.png' %}" alt="">
+				</figure>
+			</div>
+			<!-- /HT BANNER -->
+
+			<!-- HT BANNER -->
+			<div class="ht-banner">
+				<!-- HT BANNER CONTENT -->
+				<div class="ht-banner-content">
+					<p class="text-header">Receba boas avalizações</p>
+					<p>A cada serviço que realizar será colhido o feedback do cliente para que você sempre seja recomendado e possua uma reputação impecável em nossa plataforma.</p>
+				</div>
+				<!-- /HT BANNER CONTENT -->
+			</div>
+			<!-- /HT BANNER -->
+		</div>
+
+	<!-- SUBSCRIBE BANNER -->
+	<div id="subscribe-banner-wrap">
+		<div id="subscribe-banner">
+			<!-- SUBSCRIBE CONTENT -->
+			<div class="subscribe-content">
+				<!-- SUBSCRIBE HEADER -->
+				<div class="subscribe-header">
+					<figure>
+                        <img src="{% static 'core/images/news_icon.png' %}" alt="subscribe-icon">
+					</figure>
+					<p class="subscribe-title">Receba novidades</p>
+					<p>Conte com nossa equipe de Atendimento para ajudar a você a encantar seus clientes com a praticidade dos seus serviços.</p>
+				</div>
+				<!-- /SUBSCRIBE HEADER -->
+
+				<!-- SUBSCRIBE FORM -->
+				<form class="subscribe-form">
+					<input type="text" name="subscribe_email" id="subscribe_email" placeholder="Seu email...">
+					<button class="button medium dark">Receber novidades!</button>
+				</form>
+				<!-- /SUBSCRIBE FORM -->
+			</div>
+			<!-- /SUBSCRIBE CONTENT -->
+		</div>
+	</div>
+	<!-- /SUBSCRIBE BANNER -->
+
+	<!-- FOOTER -->
+	<footer>
+		<!-- FOOTER TOP -->
+		<div id="footer-top-wrap">
+			<div id="footer-top">
+				<!-- COMPANY INFO -->
+				<div class="company-info">
+					<figure class="logo small">
+                        <img src="{% static 'core/images/logo_full.png' %}" alt="logo-small">
+					</figure>
+					<p>Nós vamos mostrar o caminho para inovar o seu negócio e modernizar o seu relacionamento com clientes.</p>
+					<!-- SOCIAL LINKS -->
+					<ul class="social-links">
+						<li class="social-link fb">
+							<a href="#"></a>
+						</li>
+						<li class="social-link twt">
+							<a href="#"></a>
+						</li>
+					</ul>
+					<!-- /SOCIAL LINKS -->
+				</div>
+				<!-- /COMPANY INFO -->
+
+				<!-- LINK INFO -->
+				<div class="link-info">
+					<p class="footer-title">Nossa comunidade</p>
+					<!-- LINK LIST -->
+					<ul class="link-list">
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Funcionalidades</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Planos</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="forum.html">Sobre</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="blog-v1.html">Contato</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Blog</a>
+						</li>
+					</ul>
+					<!-- /LINK LIST -->
+				</div>
+				<!-- /LINK INFO -->
+
+
+
+				<!-- LINK INFO -->
+				<div class="link-info">
+					<p class="footer-title">Ajuda e Perguntas frequentes</p>
+					<!-- LINK LIST -->
+					<ul class="link-list">
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Central de ajuda</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Perguntas e Respostas</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Termos e Condições</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Segurança de Informações</a>
+						</li>
+					</ul>
+					<!-- /LINK LIST -->
+				</div>
+				<!-- /LINK INFO -->
+
+
+			</div>
+		</div>
+		<!-- /FOOTER TOP -->
+
+		<!-- FOOTER BOTTOM -->
+		<div id="footer-bottom-wrap">
+			<div id="footer-bottom">
+				<p>profissa.de - A melhor plataforma para prestadores de serviços - 2017</p>
+			</div>
+		</div>
+		<!-- /FOOTER BOTTOM -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<div class="shadow-film closed"></div>
+
+
 {% endblock  %}

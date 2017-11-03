@@ -1,0 +1,41 @@
+{% load staticfiles  %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+  <link rel="stylesheet" href="{% static 'core/css/vendor/tooltipster.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/vendor/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+	<!-- favicon -->
+	<link rel="icon" href="favicon.ico">
+  <title>profissa.de | {% block title  %} {% endblock %}</title>
+</head>
+<body>
+{% block content  %}{% endblock %}
+<!-- jQuery -->
+<script src="{% static 'core/js/vendor/jquery-3.1.0.min.js' %}"></script>
+<!-- Tooltipster -->
+<script src="{% static 'core/js/vendor/jquery.tooltipster.min.js' %}"></script>
+<!-- Owl Carousel -->
+<script src="{% static 'core/js/vendor/owl.carousel.min.js' %}"></script>
+<!-- Tweet -->
+<script src="{% static 'core/js/vendor/twitter/jquery.tweet.min.js' %}"></script>
+<!-- xmAlerts -->
+<script src="{% static 'core/js/vendor/jquery.xmalert.min.js' %}"></script>
+<!-- Side Menu -->
+<script src="{% static 'core/js/side-menu.js' %}"></script>
+<!-- Home -->
+<script src="{% static 'core/js/home.js' %}"></script>
+<!-- Tooltip -->
+<script src="{% static 'js/tooltip.js' %}"></script>
+<!-- User Quickview Dropdown -->
+<script src="{% static 'core/js/user-board.js' %}"></script>
+<!-- Home Alerts -->
+<script src="{% static 'core/js/home-alerts.js' %}"></script>
+<!-- Footer -->
+<script src="{% static 'core/js/footer.js' %}"></script>
+</body>
+</html>
