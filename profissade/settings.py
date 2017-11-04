@@ -31,6 +31,7 @@ THIRD_APPS = [
         'social_django',
         'mptt',
         'widget_tweaks',
+        'storages',
         ]
 
 MAIN_APPS = [
@@ -163,8 +164,11 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
+AWS_STORAGE_BUCKET_NAME = "profissade"
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = S3_URL
+#STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static/')]
 
@@ -177,7 +181,7 @@ ANYMAIL = {
         }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_CC_EMAIL = 'no-reply@zummbee.com.br'
+DEFAULT_CC_EMAIL = 'no-reply@profissa.de'
 
 # sentry
 RAVEN_URL = os.environ.get('RAVEN_URL')
