@@ -105,7 +105,7 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse(
-                'accounts:update_profile')
+                'accounts:profile')
 
 
 class LogoutView(RedirectView):
