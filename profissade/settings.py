@@ -162,6 +162,7 @@ SOCIAL_AUTH_PIPELINE = (
         'social_core.pipeline.social_auth.associate_by_email',
         )
 
+"""
 # AWS
 STATICFILES_LOCATION = 'static'
 MEDIAFILES_LOCATION = 'media'
@@ -184,6 +185,7 @@ AWS_HEADERS = {
         'x-amx-acl': 'public-read',
         'Cache-Control': 'public, max-age=31556926'
         }
+"""
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
