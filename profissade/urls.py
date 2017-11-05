@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^conta/', include(accounts_urls, namespace='accounts')),
     url(r'^prestador/', include(core_urls, namespace='providers')),
     url(r'^admin/', admin.site.urls),
-    url('', include(social_urls, namespace='social')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^usuario/sair/$', logout,
         {'next_page': '/usuario/identifique-se/'}, name='logout'),
     url(

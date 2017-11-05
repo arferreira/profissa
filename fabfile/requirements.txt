@@ -1,5 +1,0 @@
-Fabric
-boto
-django-storages
-pycrypto
-ssh

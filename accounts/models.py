@@ -1,86 +1,54 @@
-# -*- coding: utf-8 -*-
+import re
+
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.utils.translation import ugettext_lazy as _
+from django.core import validators
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import (AbstractBaseUser, UserManager,
+                                        PermissionsMixin)
 
-from simple_email_confirmation.models import SimpleEmailConfirmationUserMixin
-from simple_email_confirmation.signals import email_confirmed
 
 from accounts.helpers import (GENDER_CHOICES, STATUS_DOCUMENTS,
                               PROVIDER_CHOICES)
 
-
-
-class EmailUserManager(BaseUserManager):
-    def _create_user(self, email, password,
-                     is_staff, is_superuser, **extra_fields):
-        now = timezone.now()
-        email = self.normalize_email(email)
-        user = self.model(email=email,
-                          is_staff=is_staff,
-                          is_superuser=is_superuser, last_login=now,
-                          date_joined=now, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_user(self, email=None, password=None, **extra_fields):
-        return self._create_user(email, password, False, False,
-                                 **extra_fields)
-
-    def create_superuser(self, email, password, **extra_fields):
-        return self._create_user(email, password, True, True,
-                                 **extra_fields)
-
-
-class User(SimpleEmailConfirmationUserMixin, AbstractBaseUser):
-    objects = EmailUserManager()
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    email = models.EmailField(_('email address'), unique=True)
-    is_active = models.BooleanField(
-        _('active'), default=True, help_text=_(
-            'Designates whether this user should be treated as '
-            'active. Unselect this instead of deleting accounts.'
-        )
+class User(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(
+        'Apelido / Usuário', max_length=30, validators=[
+            validators.RegexValidator(
+                re.compile('^[\w.@+-]+$'),
+                'Informe um nome de usuário válido. '
+                'Este valor deve conter apenas letras, números '
+                'e os caracteres: @/./+/-/_ .'
+                , 'invalid'
+            )
+        ], help_text='Um nome curto que será usado para identificá-lo de ' \
+                     'forma única na plataforma'
     )
-    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-    is_superuser = models.BooleanField(
-        _('superuser status'), default=False, help_text=_(
-            'Designates that this user has all permissions without '
-            'explicitly assigning them.'
-        )
-    )
-    is_staff = models.BooleanField(
-        _('staff status'), default=False, help_text=_(
-            'Designates whether the user can log into this admin '
-            'site.'
-        )
-    )
+    email = models.EmailField(verbose_name='E-mail', unique=True)
+    is_staff = models.BooleanField(verbose_name='Equipe', default=False)
+    is_active = models.BooleanField(verbose_name='Ativo', default=True)
+    date_joined = models.DateTimeField(auto_now_add=True,
+                                       verbose_name='Data de entrada')
 
-    def get_full_name(self):
-        return self.first_name + " " + self.last_name
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      verbose_name='Criado em')
+    updated_at = models.DateTimeField(auto_now=True,
+                                      verbose_name='Atualizado em')
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    objects = UserManager()
+
+    class Meta:
+        verbose_name = 'Usuário'
+        verbose_name_plural = 'Usuários'
+
+    def __str__(self):
+        return self.email or self.username
 
     def get_short_name(self):
-        return self.first_name
-
-    def has_perm(self, perm, obj=None):
-        return self.is_superuser
-
-    def has_module_perms(self, app_label):
-        return self.is_superuser
-
-    USERNAME_FIELD = 'email'
-
-
-@receiver(email_confirmed)
-def activate_user_handler(sender, **kwargs):
-    sender.is_active = True
-    sender.save()
-
+        return self.email or self.username
 
 
 # model to Profile User

@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'profissade.urls'
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -143,10 +145,11 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'cover, name, first_name, last_name, age_range,'
     'link, gender, locale, picture'}
 
-
 AUTHENTICATION_BACKENDS = [
-        'django.contrib.auth.backends.ModelBackend',
+        'social_core.backends.facebook.FacebookAppOAuth2',
         'social_core.backends.facebook.FacebookOAuth2',
+        'django.contrib.auth.backends.ModelBackend',
+        'accounts.backends.ModelBackend',
         ]
 
 SOCIAL_AUTH_PIPELINE = (

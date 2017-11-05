@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
+{% block title  %}Crie sua conta agora mesmo!{% endblock %}
 {% block content %}
 
 <section style="margin-top:50px;">
@@ -8,22 +8,33 @@
         <div class="form-popup-content">
             <h4 class="popup-title">
                 <center>
-                    <img src="{% static 'core/images/logoweb.png'  %}" style="margin-left: 40px; height:60px; width:200px;"  alt="">
-                </center> 
+                    <img src="{% static 'core/images/logoweb.png'  %}" style="height:60px; width:200px;"  alt="">
+                </center>
             </h4>
             <hr class="line-separator">
-            <form action="."  method="POST" class="form-type-material">
+            <form method="post" class="form-type-material">
                 {% csrf_token %}
+                {% for error in form.non_field_errors  %}
+                <div class="alert alert-danger">
+                    {{ error  }}
+                </div>
+                {% endfor  %}
                 <label for="email_address2" class="rl-label required">Seu email</label>
                 <input type="email" id="email_address2" name="email" placeholder="Informe seu email...">
-                <label for="username2" class="rl-label">Primeiro nome</label>
-                <input type="text" id="username2" name="first_name" placeholder="Informe seu primeiro nome...">
-                <label for="username2" class="rl-label">Sobrenome</label>
-                <input type="text" id="username2" name="last_name" placeholder="Informe seu sobrenome...">
+                {% for error in form.email.errors  %}
+                <span class="help-block" style="color:red;">{{ error  }}</span>
+                {% endfor  %}
                 <label for="password2" class="rl-label required">Sua senha</label>
                 <input type="password" id="password2" name="password1" placeholder="Informe sua senha...">
+                {% for error in form.password1.errors  %}
+                <span class="help-block" style="color:red;">{{ error  }}</span>
+                {% endfor  %}
                 <label for="repeat_password2" class="rl-label required">Sua senha novamente</label>
                 <input type="password" id="repeat_password2" name="password2" placeholder="Informe sua senha novamente...">
+                {% for error in form.password2.errors  %}
+                <span class="help-block" style="color:red;">{{ error  }}</span>
+                {% endfor  %}
+                <p>Já possui uma conta? <a href="{% url 'login' %}" class="primary">Acessar minha conta</a></p>
                 <button class="button mid primary">Criar <span class="primary">conta!</span></button>
             </form>
             <hr class="line-separator double">

@@ -6,7 +6,7 @@ GENDER_CHOICES = (
 
 STATUS_DOCUMENTS = (
         (True, 'Verificado'),
-        (False, 'Não verificado')
+        (False, 'NÃ£o verificado')
         )
 
 PROVIDER_CHOICES = (

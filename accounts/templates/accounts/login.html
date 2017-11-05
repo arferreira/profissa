@@ -30,7 +30,8 @@
                 {% for error in form.password.errors  %}
                 <span class="help-block" style="color:red;">{{ error  }}</span>
                 {% endfor  %}
-                <p>Esquece sua senha? <a href="#" class="primary">Clique aqui!</a></p>
+                <p>Esquece sua senha? <a href="" class="primary">Clique aqui!</a></p>
+                <p>Não possui uma conta? <a href="{% url 'accounts:register' %}" class="primary">Criar conta</a></p>
                 <button class="button mid primary">Entrar<span class="primary"></span></button>
             </form>
             <hr class="line-separator double">
