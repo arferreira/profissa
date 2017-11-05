@@ -21,7 +21,7 @@ fabconf = {}
 fabconf['FAB_CONFIG_PATH'] = os.path.dirname(__file__)
 
 # Project name
-fabconf['PROJECT_NAME'] = "amazon_app"
+fabconf['PROJECT_NAME'] = "profissade"
 
 # Username for connecting to EC2 instaces - Do not edit unless you have a
 # reason to
@@ -48,16 +48,16 @@ fabconf[
 fabconf['RUN_MIGRATIONS_CMD'] = "python %s/manage.py syncdb" % fabconf['PROJECT_PATH']
 
 # App domains
-fabconf['DOMAINS'] = "example.com www.example.com"
+fabconf['DOMAINS'] = "profissa.de www.profissa.de"
 
 # Path for virtualenvs
 fabconf['VIRTUALENV_DIR'] = "/home/%s/.virtualenvs" % fabconf['SERVER_USERNAME']
 
 # Email for the server admin
-fabconf['ADMIN_EMAIL'] = "admin@example.com"
+fabconf['ADMIN_EMAIL'] = "antonioricardo@profissa.de"
 
 # Git username for the server
-fabconf['GIT_USERNAME'] = "EC2"
+fabconf['GIT_USERNAME'] = "antonioricardoarfs"
 
 # Name of the private key file used for git deployments
 fabconf['GIT_DEPLOY_KEY_NAME'] = "git_rsa"
@@ -75,8 +75,8 @@ fabconf['GIT_HOST_DOMAIN'] = "bitbucket.org"
 # the projects owner. The REPO_NAME can contain slashes (eg
 # <project_name>/<repo_name> if you are using Bitbucket and the project is
 # within a project)
-fabconf['REPO_USERNAME'] = ''
-fabconf['REPO_NAME'] = ''
+fabconf['REPO_USERNAME'] = 'antonioricardoarfs'
+fabconf['REPO_NAME'] = 'profissa'
 
 # Creates the ssh location of your remote repo from the above details
 fabconf['REPO_URL'] = "ssh://git@%s/%s/%s.git" % (
@@ -87,13 +87,13 @@ fabconf['ACTIVATE'] = "source /home/%s/.virtualenvs/%s/bin/activate" % (
     fabconf['SERVER_USERNAME'], fabconf['PROJECT_NAME'])
 
 # Name tag for your server instance on EC2
-fabconf['INSTANCE_NAME_TAG'] = "MyInstance"
+fabconf['INSTANCE_NAME_TAG'] = "Profissa.de"
 
 # EC2 key. http://bit.ly/j5ImEZ
-fabconf['AWS_ACCESS_KEY'] = ''
+fabconf['AWS_ACCESS_KEY'] = 'AKIAJWEYYK2MHTH2RGHQ'
 
 # EC2 secret. http://bit.ly/j5ImEZ
-fabconf['AWS_SECRET_KEY'] = ''
+fabconf['AWS_SECRET_KEY'] = 'IFJtS2FSMf2Mi4gEv5yJJyuSyGs0tSBLDrkOfLe9'
 
 # EC2 region. http://amzn.to/12jBkm7
 ec2_region = 'ap-southeast-2'
@@ -102,10 +102,10 @@ ec2_region = 'ap-southeast-2'
 ec2_amis = ['ami-51821b6b']
 
 # Name of the keypair you use in EC2. http://bit.ly/ldw0HZ
-ec2_keypair = 'insert_keypair_name'
+ec2_keypair = ''
 
 # Name of the security group. http://bit.ly/kl0Jyn
-ec2_secgroups = ['MySecurityGroup']
+ec2_secgroups = ['ProfissaSecurityGroup']
 
 # API Name of instance type. http://bit.ly/mkWvpn
 ec2_instancetype = 't1.micro'
