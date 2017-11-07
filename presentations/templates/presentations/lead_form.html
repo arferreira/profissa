@@ -1,0 +1,113 @@
+{% extends 'base_landing.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}{% endblock %}
+{% block content %}
+ <div class="container" >
+     <img src="{% static 'landing/images/logo_full.png' %}" style="wmargin-top:90px; width:200px;">
+    <div class="section">
+    <h5>Realize seu pré-cadastro e garanta seu convite</h5>
+    <p>Iremos disponibilizar 200 convites para prestadores de serviço, preencha o formulário e aguarde nossa confirmação por email.</p>
+  </div>
+  <br /><br />
+  <div class="divider"></div>
+  <br /><br />
+   <div class="row">
+       <form class="col s12" action="" method="post">
+           {% csrf_token  %}
+            {% for error in form.non_field_errors  %}
+            <div class="alert alert-danger">
+                {{ error  }}
+            </div>
+            {% endfor  %}
+
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+      <div class="row">
+        <div class="input-field col s6">
+                            {% for error in form.first_name.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input placeholder="Primeiro Nome" id="first_name" name="first_name" type="text" class="validate">
+          <label for="first_name">Primeiro Nome</label>
+        </div>
+        <div class="input-field col s6">
+                            {% for error in form.last_name.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="last_name" placeholder="Sobrenome" type="text" name="last_name" class="validate">
+          <label for="last_name">Sobrenome</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+                            {% for error in form.cellphone.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="celphone" type="text" class="validate" name="cellphone" placeholder="Seu número de telefone principal">
+          <label for="celphone">Telefone</label>
+        </div>
+        <div class="input-field col s6">
+                            {% for error in form.whatsapp.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="whatsapp" type="text" class="validate" name="whatsapp" placeholder="Seu número do whatsapp">
+          <label for="whatsapp">Whatsapp</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+                            {% for error in form.email.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="email" type="email" class="validate" name="email" placeholder="Seu email">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+                            {% for error in form.facebook.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="facebook" type="text" name="facebook" placeholder="Perfil ou Página de seu negócio no Facebook" class="validate">
+          <label for="facebook">Perfil/Página do Facebook</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+                            {% for error in form.city_state.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="cidade" placeholder="Cidade - Estado onde mora" name="city_state"  type="text" class="validate">
+          <label for="city">Cidade - Estado</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+                            {% for error in form.segment.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+          <input id="profession" name="segment" placeholder="Ex: Salão de beleza, Barbearia, Personal Trainer, Massagista, Petshops, Tatuadores, Construção Civil, Reparos ....." type="text" class="validate">
+          <label for="profession">Qual o segmento do seu negócio?</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+                            {% for error in form.suggestion.errors  %}
+                            <span class="help-block" style="color:red;">{{ error  }}</span>
+                            {% endfor  %}
+            <textarea class="materialize-textarea" id="suggestion" name="suggestion" cols="30" rows="10">
+          </textarea>
+          <label for="profession">Tem alguma sugestão de funcionalidade que você gostaria de ver em nossa plataforma?</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn-large profissa-red">Solicitar convite</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> 
+{% endblock  %}

@@ -1,0 +1,92 @@
+{% extends 'base_landing.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+<nav class="light-white lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="" class="brand-logo">
+        <img src="{% static 'landing/images/logo_full.png' %}" style="width:200px;">
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'invite' %}" class="btn-large profissa-red">Pré-cadastro</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="{% url 'invite' %}">Pré-cadastro</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h2 class="header center profissa-text">Prepare-se para conhecer seus novos clientes</h2>
+      <div class="row center">
+        <h5 class="header col s12 light profissa-text">
+          Nossa missão é crescer e cultivar o maior mercado digital do mundo, um lugar onde as pessoas podem encontrar e contratar qualquer serviço que precisam e criar qualquer negócio que sonhe. Como profissional, seu trabalho é inspirado pelo sucesso de nossos usuários e pela celebração de seu próprio crescimento pessoal. Junte-se a nós.
+        </h5>
+      </div>
+      <div class="row center">
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-red-text"><i class="material-icons">add_to_queue</i></h2>
+            <h5 class="center">Exclusividade</h5>
+
+            <p class="light">
+              Aproveite a exclusividade de uma plataforma com foco em prestadores de serviços, não dispute espaço com produtos e outros tipos de anúncios.
+            </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-red-text"><i class="material-icons">lock_outline</i></h2>
+            <h5 class="center">Segurança</h5>
+
+            <p class="light">
+              Todos os usuários da plataforma passam por uma validação de identificação, essa prática mantém a comunidade segura e permite que todos os usuários negociem com confiança.
+            </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-red-text"><i class="material-icons">assignment</i></h2>
+            <h5 class="center">Agendamentos Online</h5>
+
+            <p class="light">Os agendamentos podem ser feitos por seus clientes, pela web ou pelo celular. Eles possuem acesso a sua agenda de atendimento, escolher uma data e horário disponível e agendar o seu serviço. Você confirma ou reagenda. Simples assim!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+  <footer class="page-footer white">
+    <div class="footer-copyright">
+      <div class="container">
+        <center>
+        <div class="text-center center-block">
+            <br />
+                <a href="https://www.facebook.com/profissade"><i class="fa fa-facebook-square fa-3x social"></i></a>
+	              <a href="mailto:contato@profissa.de"><i class="fa fa-envelope-square fa-3x social"></i></a>
+            </div>
+          </center>
+        <center><span style="color:white; font-size:12px;">Profissa.de - A melhor plataforma para prestadores de serviços - 2017</span></center>
+      </div>
+    </div>
+  </footer>
+
+{% endblock  %}

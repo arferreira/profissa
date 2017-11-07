@@ -39,6 +39,7 @@ MAIN_APPS = [
         'accounts',
         'core',
         'business',
+        'presentations',
         ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + MAIN_APPS
@@ -146,8 +147,8 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'link, gender, locale, picture'}
 
 AUTHENTICATION_BACKENDS = [
-        'social_core.backends.facebook.FacebookAppOAuth2',
-        'social_core.backends.facebook.FacebookOAuth2',
+        #'social_core.backends.facebook.FacebookAppOAuth2',
+        #'social_core.backends.facebook.FacebookOAuth2',
         'django.contrib.auth.backends.ModelBackend',
         'accounts.backends.ModelBackend',
         ]

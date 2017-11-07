@@ -1,0 +1,23 @@
+{% extends 'base_landing.html' %}
+{% load static %}
+{% block title  %}Pré-convite realizado com sucesso{% endblock %}
+{% block content  %}
+<br /><br /><br />
+<div class="container">
+
+    <center>
+    <div class="row">
+      <div class="col s12 ">
+        <img src="{% static 'landing/images/logo_full.png' %}" style="wmargin-top:90px; width:200px;">
+        <div class="card-panel profissa-red">
+          <span class="white-text">
+            Seu pré-cadastro foi realizado com sucesso!<br />
+            Em breve encaminharemos por email o seu convite!
+          </span>
+        </div>
+      </div>
+    </div>
+    </center>
+
+  </div>
+{% endblock  %}

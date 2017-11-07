@@ -1,0 +1,68 @@
+{% extends 'base_landing.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+ <div class="container" >
+   <img src="{% static 'landing/images/logo_full.png' %}" style="wmargin-top:90px; width:200px;">
+    <div class="section">
+    <h5>Realize seu pré-cadastro e garanta seu convite</h5>
+    <p>Iremos disponibilizar 200 convites para prestadores de serviço, preencha o formulário e aguarde nossa confirmação por email.</p>
+  </div>
+  <br /><br />
+  <div class="divider"></div>
+  <br /><br />
+   <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Primeiro Nome" id="first_name" type="text" class="validate">
+          <label for="first_name">Primeiro Nome</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" placeholder="Sobrenome" type="text" class="validate">
+          <label for="last_name">Sobrenome</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="celphone" type="text" class="validate" placeholder="Seu número de telefone principal">
+          <label for="celphone">Telefone</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="whatsapp" type="text" class="validate" placeholder="Seu número do whatsapp">
+          <label for="whatsapp">Whatsapp</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" placeholder="Seu email">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="facebook" type="text" placeholder="Perfil ou Página de seu negócio no Facebook" class="validate">
+          <label for="facebook">Perfil/Página do Facebook</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="cidade" placeholder="Cidade - Estado onde mora" type="text" class="validate">
+          <label for="city">Cidade - Estado</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="profession" placeholder="Ex: Salão de beleza, Barbearia, Personal Trainer, Massagista, Petshops, Tatuadores, Construção Civil, Reparos ....." type="text" class="validate">
+          <label for="profession">Qual o segmento do seu negócio?</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn-large profissa-red">Solicitar convite</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> 
+{% endblock  %}

@@ -13,7 +13,7 @@ from accounts.helpers import (GENDER_CHOICES, STATUS_DOCUMENTS,
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
-        'Apelido / Usuário', max_length=30, validators=[
+        'Apelido / Usuário', max_length=30, unique=True, validators=[
             validators.RegexValidator(
                 re.compile('^[\w.@+-]+$'),
                 'Informe um nome de usuário válido. '
