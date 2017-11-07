@@ -35,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True,
                                       verbose_name='Atualizado em')
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
@@ -47,9 +47,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email or self.username
 
-    def get_short_name(self):
-        return self.email or self.username
+    def get_full_name(self):
+        return self.email
 
+    def get_short_name(self):
+        return self.email
 
 # model to Profile User
 class Profile(models.Model):
