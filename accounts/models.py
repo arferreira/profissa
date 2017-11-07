@@ -36,7 +36,6 @@ class User(AbstractBaseUser, PermissionsMixin):
                                       verbose_name='Atualizado em')
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
