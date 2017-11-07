@@ -12,18 +12,6 @@ from accounts.helpers import (GENDER_CHOICES, STATUS_DOCUMENTS,
                               PROVIDER_CHOICES)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(
-        'Apelido / Usuário', max_length=30, unique=True, validators=[
-            validators.RegexValidator(
-                re.compile('^[\w.@+-]+$'),
-                'Informe um nome de usuário válido. '
-                'Este valor deve conter apenas letras, números '
-                'e os caracteres: @/./+/-/_ .'
-                , 'invalid'
-            )
-        ], help_text='Um nome curto que será usado para identificá-lo de ' \
-                     'forma única na plataforma'
-    )
     email = models.EmailField(verbose_name='E-mail', unique=True)
     is_staff = models.BooleanField(verbose_name='Equipe', default=False)
     is_active = models.BooleanField(verbose_name='Ativo', default=True)
