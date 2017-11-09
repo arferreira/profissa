@@ -14,7 +14,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserAdminForm
     fieldsets = (
         (None, {
-            'fields': ('email')
+            'fields': ('email',)
         }),
         ('Informações Básicas', {
             'fields': ('email', 'last_login')
@@ -30,6 +30,7 @@ class UserAdmin(BaseUserAdmin):
     )
     list_display = ['email', 'is_staff', 'is_active',
                     'date_joined']
+    ordering = ('email', )
 
 
 admin.site.register(User, UserAdmin)
