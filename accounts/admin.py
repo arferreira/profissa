@@ -2,22 +2,24 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import User
-from .forms import UserCreationForm, UserAdminForm
+from .forms import UserAdminCreationForm, UserAdminForm
+
 
 class UserAdmin(BaseUserAdmin):
-    form = UserCreationForm
+
+    add_form = UserAdminCreationForm
     add_fieldsets = (
-            (None, {
-                'fields': ('email', 'password1', 'password2')
-                }),
-            )
+        (None, {
+            'fields': ('username', 'email', 'password1', 'password2')
+        }),
+    )
     form = UserAdminForm
     fieldsets = (
         (None, {
-            'fields': ('email',)
+            'fields': ('username', 'email')
         }),
         ('Informações Básicas', {
-            'fields': ('email', 'last_login')
+            'fields': ('username', 'last_login')
         }),
         (
             'Permissões', {
@@ -28,9 +30,7 @@ class UserAdmin(BaseUserAdmin):
             }
         ),
     )
-    list_display = ['email', 'is_staff', 'is_active',
-                    'date_joined']
-    ordering = ('email', )
+    list_display = ['username', 'email', 'is_active', 'is_staff', 'date_joined']
 
 
 admin.site.register(User, UserAdmin)

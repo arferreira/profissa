@@ -1,5 +1,7 @@
 from django.contrib.auth.backends import ModelBackend as BaseModelBackend
+
 from .models import User
+
 
 class ModelBackend(BaseModelBackend):
 
@@ -10,5 +12,4 @@ class ModelBackend(BaseModelBackend):
                 if user.check_password(password):
                     return user
             except User.DoesNotExist:
-                raise
-
+                pass

@@ -147,11 +147,11 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'link, gender, locale, picture'}
 
 AUTHENTICATION_BACKENDS = [
+        'accounts.backends.ModelBackend',
         #'social_core.backends.facebook.FacebookAppOAuth2',
         #'social_core.backends.facebook.FacebookOAuth2',
         'django.contrib.auth.backends.ModelBackend',
-        'accounts.backends.ModelBackend',
-        ]
+                ]
 
 SOCIAL_AUTH_PIPELINE = (
         'social_core.pipeline.social_auth.social_details',

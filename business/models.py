@@ -237,7 +237,7 @@ class OrderService(models.Model):
                                          verbose_name='Data de emissão')
     obs = models.CharField(max_length=500, blank=True, null=False,
                            verbose_name='Observação')
-    services = models.ManyToManyField(TypeService, blank=False, null=False,
+    services = models.ManyToManyField(TypeService, blank=False,
                                       verbose_name='Itens')
     total = models.DecimalField(max_digits=8, decimal_places=2, blank=False,
                                 null=False, verbose_name='Valor total')
