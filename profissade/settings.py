@@ -166,29 +166,27 @@ SOCIAL_AUTH_PIPELINE = (
         'social_core.pipeline.social_auth.associate_by_email',
         )
 
-"""
-# AWS
-STATICFILES_LOCATION = 'static'
-MEDIAFILES_LOCATION = 'media'
 
-AWS_S3_SECURE_URLS = True
-AWS_QUERYSTRING_AUTH = False
-AWS_PRELOAD_METADATA = True
+# AWS
+
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'profissade'
-AWS_S3_CUSTOM_DOMAIN = 's3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
 
-STATICFILES_STORAGE = 'profissade.s3util.StaticStorage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+STATICFILES_DIRS = [
+    os.path.join('profissade/static'),
+]
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_FILE_STORAGE = 'profissade.s3util.MediaStorage'
-MEDIA_URL = "https://%s/%s" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
-AWS_HEADERS = {
-        'x-amx-acl': 'public-read',
-        'Cache-Control': 'public, max-age=31556926'
-        }
+
+
 """
 
 
@@ -199,7 +197,7 @@ STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static/')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+"""
 
 
 ANYMAIL = {
