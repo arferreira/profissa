@@ -1,15 +1,15 @@
 {% extends "base_dashboard.html" %}
-{% block title  %} Seu perfil{% endblock  %}
+{% block title  %} Seu painel profissional{% endblock  %}
 {% load static  %}
 {% block content %}
 
 <!-- SIDE MENU -->
 	<div id="dashboard-options-menu" class="side-menu dashboard left closed">
         <!-- SVG PLUS -->
-		<svg class="svg-plus">
-			<use xlink:href="#svg-plus"></use>
-		</svg>
 		<!-- /SVG PLUS -->
+        <svg class="svg-plus">
+            <use xlink:href="#svg-plus"></use>
+		</svg>
 
 		<!-- SIDE MENU HEADER -->
 		<div class="side-menu-header">
@@ -33,7 +33,6 @@
 
 				<!-- USER INFORMATION -->
                 <p class="user-name">{{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
-				<p class="user-money" style="color:white;">50 Pontos</p>
 				<!-- /USER INFORMATION -->
 			</div>
 			<!-- /USER QUICKVIEW -->
@@ -41,25 +40,40 @@
 		<!-- /SIDE MENU HEADER -->
 
 		<!-- SIDE MENU TITLE -->
-		<p class="side-menu-title">Seu painel</p>
 		<!-- /SIDE MENU TITLE -->
 
 		<!-- DROPDOWN -->
 		<ul class="dropdown dark hover-effect interactive">
 			<!-- DROPDOWN ITEM -->
 			<li class="dropdown-item">
-				<a href="dashboard-settings.html">
+				<a href="">
                     <span class="sl-icon icon-settings"></span>
-                    Account Settings
+                    Painel
+                </a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="">
+                    <span class="sl-icon icon-settings"></span>
+                    Configurações
+                </a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="">
+                    <span class="sl-icon icon-settings"></span>
+                    Avaliações
                 </a>
 			</li>
 			<!-- /DROPDOWN ITEM -->
 
 			<!-- DROPDOWN ITEM -->
 			<li class="dropdown-item">
-				<a href="dashboard-notifications.html">
+				<a href="">
                     <span class="sl-icon icon-star"></span>
-                    Notifications
+                    Ordens de serviço
                 </a>
                 <!-- PIN -->
                 <span class="pin soft-edged big primary">49</span>
@@ -67,75 +81,21 @@
 			</li>
 			<!-- /DROPDOWN ITEM -->
 
-			<!-- DROPDOWN ITEM -->
-			<li class="dropdown-item interactive">
-				<a href="#">
-                    <span class="sl-icon icon-envelope"></span>
-                    Messages
-                    <!-- SVG ARROW -->
-					<svg class="svg-arrow">
-						<use xlink:href="#svg-arrow"></use>
-					</svg>
-					<!-- /SVG ARROW -->
-				</a>
-
-				<!-- INNER DROPDOWN -->
-				<ul class="inner-dropdown">
-					<!-- INNER DROPDOWN ITEM -->
-					<li class="inner-dropdown-item">
-						<a href="dashboard-inbox.html">Your Inbox (36)</a>
-						<!-- PIN -->
-						<span class="pin soft-edged secondary">2</span>
-						<!-- /PIN -->
-					</li>
-					<!-- /INNER DROPDOWN ITEM -->
-
-					<!-- INNER DROPDOWN ITEM -->
-					<li class="inner-dropdown-item">
-						<a href="dashboard-inbox-v2.html">Your Inbox (36) V2</a>
-					</li>
-					<!-- /INNER DROPDOWN ITEM -->
-
-					<!-- INNER DROPDOWN ITEM -->
-					<li class="inner-dropdown-item">
-						<a href="dashboard-openmessage.html">Open Message</a>
-					</li>
-					<!-- /INNER DROPDOWN ITEM -->
-
-					<!-- INNER DROPDOWN ITEM -->
-					<li class="inner-dropdown-item">
-						<a href="dashboard-inbox.html">Starred Message</a>
-					</li>
-					<!-- /INNER DROPDOWN ITEM -->
-
-					<!-- INNER DROPDOWN ITEM -->
-					<li class="inner-dropdown-item">
-						<a href="dashboard-inbox.html">Deleted Messages</a>
-					</li>
-					<!-- /INNER DROPDOWN ITEM -->
-				</ul>
-				<!-- INNER DROPDOWN -->
-
-                <!-- PIN -->
-                <span class="pin soft-edged big secondary">!</span>
-                <!-- /PIN -->
-			</li>
-			<!-- /DROPDOWN ITEM -->
 
 			<!-- DROPDOWN ITEM -->
 			<li class="dropdown-item">
-				<a href="dashboard-purchases.html">
+				<a href="">
                     <span class="sl-icon icon-tag"></span>
-                    Your Purchases
+                    Solicitações
                 </a>
 			</li>
 			<!-- /DROPDOWN ITEM -->
 
 			<!-- DROPDOWN ITEM -->
 			<li class="dropdown-item">
-				<a href="dashboard-buycredits.html">
+				<a href="">
                     <span class="sl-icon icon-credit-card"></span>
-                    Buy Credits
+                    Mensagens
                 </a>
 			</li>
 			<!-- /DROPDOWN ITEM -->
@@ -188,8 +148,7 @@
         <div class="dashboard-content">
             <!-- HEADLINE -->
             <div class="headline statement primary">
-                <h4>Suas solicitações</h4>
-				<a href="#" class="button dark-light">Solicitar profissional</a>
+                <h4>Painel geral</h4>
             </div>
             <!-- /HEADLINE -->
 
@@ -198,20 +157,9 @@
 				<!-- SALE DATA ITEM -->
 				<div class="sale-data-item">
 					<span class="sl-icon icon-present"></span>
-					<p class="text-header big">50</p>
+					<p class="text-header big">30</p>
 					<div class="sale-data-item-info">
-						<p class="text-header">Serviços solicitados</p>
-						<p>Este mês</p>
-					</div>
-				</div>
-				<!-- /SALE DATA ITEM-->
-
-				<!-- SALE DATA ITEM -->
-				<div class="sale-data-item">
-					<span class="sl-icon icon-present"></span>
-					<p class="text-header big">2</p>
-					<div class="sale-data-item-info">
-						<p class="text-header">Reclamações</p>
+						<p class="text-header">Serviços atendidos</p>
 						<p>Neste mês</p>
 					</div>
 				</div>
@@ -219,11 +167,22 @@
 
 				<!-- SALE DATA ITEM -->
 				<div class="sale-data-item">
-					<span class="sl-icon icon-tag"></span>
-					<p class="price big"><span>R$</span>120,50</p>
+					<span class="sl-icon icon-present"></span>
+					<p class="text-header big">100</p>
 					<div class="sale-data-item-info">
-						<p class="text-header">Total de Gastos</p>
-						<p>Este mês</p>
+						<p class="text-header">Ordens de Serviço</p>
+						<p>Recebidas</p>
+					</div>
+				</div>
+				<!-- /SALE DATA ITEM-->
+
+				<!-- SALE DATA ITEM -->
+				<div class="sale-data-item">
+					<span class="sl-icon icon-tag"></span>
+					<p class="text-header big">1</p>
+					<div class="sale-data-item-info">
+						<p class="text-header">Reclamação</p>
+						<p>Em aberto</p>
 					</div>
 				</div>
 				<!-- /SALE DATA ITEM-->
@@ -231,16 +190,21 @@
 				<!-- SALE DATA ITEM -->
 				<div class="sale-data-item">
 					<span class="sl-icon icon-wallet"></span>
-					<p class="price big"><span>R$</span>68,00</p>
+					<p class="price big"><span>R$</span>1680,00</p>
 					<div class="sale-data-item-info">
-						<p class="text-header">Economizados</p>
-						<p>Com trocas de pontos por descontos</p>
+						<p class="text-header">Total de Recebimentos</p>
+						<p>Neste mês</p>
 					</div>
 				</div>
 				<!-- /SALE DATA ITEM-->
 			</div>
 			<!-- /SALE DATA -->
 
+            <!-- HEADLINE -->
+            <div class="headline statement primary">
+                <h4>Últimas Ordens de serviço</h4>
+            </div>
+            <!-- /HEADLINE -->
 			<!-- TRANSACTION LIST -->
 			<div class="transaction-list">
 				<!-- TRANSACTION LIST HEADER -->
@@ -249,16 +213,13 @@
 						<p class="text-header small">Data</p>
 					</div>
 					<div class="transaction-list-header-author">
-						<p class="text-header small">Profissional</p>
+						<p class="text-header small">Solicitante</p>
 					</div>
 					<div class="transaction-list-header-item">
 						<p class="text-header small">Serviço</p>
 					</div>
-					<div class="transaction-list-header-code">
-						<p class="text-header small">Valor Total</p>
-					</div>
 					<div class="transaction-list-header-price">
-						<p class="text-header small">Valor Final</p>
+						<p class="text-header small">Valor</p>
 					</div>
 					<div class="transaction-list-header-cut">
 						<p class="text-header small">Desconto</p>
@@ -273,31 +234,28 @@
 				<!-- TRANSACTION LIST ITEM -->
 				<div class="transaction-list-item">
 					<div class="transaction-list-item-date">
-						<p>20 de Novembro de 2017</p>
+						<p>20/11/2017</p>
 					</div>
 					<div class="transaction-list-item-author">
-						<p class="text-header"><a href="">Mariana Souza</a></p>
+						<p class="text-header"><a href="">João Silva</a></p>
 					</div>
 					<div class="transaction-list-item-item">
-						<p class="category primary"><a href="">Diária residencial</a></p>
+						<p class="category primary"><a href="">Reparo em Gesso</a></p>
 					</div>
 					<div class="transaction-list-item-detail">
 						<p></p>
 					</div>
-					<div class="transaction-list-item-code">
-						<p><span class="light">R$ 130,00</span></p>
-					</div>
 					<div class="transaction-list-item-price">
-						<p>R$ 117,00</p>
+						<p>R$ --</p>
 					</div>
 					<div class="transaction-list-item-cut">
 						<p><span class="light">10%</span></p>
 					</div>
 					<div class="transaction-list-item-earnings">
-						<p class="text-header">Finalizado</p>
+						<p class="text-header">Aguardando</p>
 					</div>
 					<div class="transaction-list-item-icon">
-						<div class="transaction-icon primary">
+						<div class="transaction-icon secondary">
 							<!-- SVG PLUS -->
 							<svg class="svg-plus">
 								<use xlink:href="#svg-plus"></use>
@@ -329,5 +287,13 @@
     <!-- /DASHBOARD BODY -->
 
 	<div class="shadow-film closed"></div>
+    <!-- SVG PLUS -->
+<svg style="display: none;">
+	<symbol id="svg-plus" viewBox="0 0 13 13" preserveAspectRatio="xMinYMin meet">
+		<rect x="5" width="3" height="13"/>
+		<rect y="5" width="13" height="3"/>
+	</symbol>
+</svg>
+<!-- /SVG PLUS -->
 
 {% endblock %}
