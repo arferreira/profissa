@@ -12,7 +12,7 @@ SECRET_KEY = config('SECRET_KEY')
 # get debug on .env
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['teste.profissa.com.br', 'profissa.de']
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -40,6 +40,7 @@ MAIN_APPS = [
         'core',
         'business',
         'presentations',
+        'solicitations',
         ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + MAIN_APPS
@@ -166,47 +167,46 @@ SOCIAL_AUTH_PIPELINE = (
         'social_core.pipeline.social_auth.associate_by_email',
         )
 
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static/')]
+else:
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'profissade'
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_OBJECT_PARAMETERS = {
+            'CacheControl': 'max-age=86400',
+            }
+    AWS_LOCATION = 'static'
 
-# AWS
+    STATICFILES_DIRS = [
+            os.path.join('profissade/static'),
+            ]
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'profissade'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
-
-STATICFILES_DIRS = [
-    os.path.join('profissade/static'),
-]
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-
-
-"""
-
-
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(PROJECT_DIR, 'static/')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
 """
-
-
 ANYMAIL = {
-        "MAILGUN_API_KEY": os.environ.get('MAILGUN_API_KEY'),
-        "MAILGUN_SENDER_DOMAIN": os.environ.get('MAILGUN_SENDER_DOMAIN'),
+        "MAILGUN_API_KEY": config('MAILGUN_API_KEY'),
+        "MAILGUN_SENDER_DOMAIN": config('MAILGUN_SENDER_DOMAIN'),
         }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_CC_EMAIL = 'no-reply@profissa.de'
+"""
+
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@mg.profissa.de'
+EMAIL_HOST_PASSWORD= 'ea025707dabcf33cac6f0b9210e31440'
+EMAIL_USE_TLS = True
 
 # sentry
 RAVEN_URL = os.environ.get('RAVEN_URL')

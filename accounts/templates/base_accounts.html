@@ -208,7 +208,7 @@
                             <!-- Left Menu Start -->
                             {% if request.user.profile.provider  %}
                             <ul class="metisMenu nav" id="side-menu">
-                                <li><a href="index.html"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
+                                <li><a href="{% url 'root:panel' %}"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
 
                                 <li>
                                     <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-money"></i> Financeiro<span class="fa arrow"></span></a>
@@ -232,7 +232,7 @@
                             </ul>
                             {% else  %}
                             <ul class="metisMenu nav" id="side-menu">
-                                <li><a href="index.html"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
+                                <li><a href="{% url 'root:panel' %}"><i class="fa fa-dashboard"></i> Painel de Controle</a></li>
 
                                 <li>
                                     <a href="javascript: void(0);" aria-expanded="true"><i class="fa fa-bookmark-o"></i> SolicitaÃ§Ãµes<span class="fa arrow"></span></a>

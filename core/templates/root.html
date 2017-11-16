@@ -1,0 +1,361 @@
+{% extends 'base.html'  %}
+{% load staticfiles  %}
+{% block title  %} os melhores e mais seguros profissionais para sua casa{% endblock %}
+{% block content  %}
+
+<!-- HEADER -->
+	<div class="header-wrap">
+
+		<header>
+			<!-- LOGO -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO -->
+
+			<!-- LOGO MOBILE -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo-mobile">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO MOBILE -->
+
+			<!-- MOBILE ACCOUNT OPTIONS HANDLER -->
+			<div class="mobile-account-options-handler right secondary">
+                {%  if request.user.is_authenticated   %}
+						<figure class="user-avatar" style="margin-top:20px;">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+						</figure>
+                {% else %}
+                <span class="icon-user"></span>
+                {% endif %}
+			</div>
+			<!-- /MOBILE ACCOUNT OPTIONS HANDLER -->
+
+			<!-- USER BOARD -->
+			<div class="user-board">
+            {% if request.user.is_authenticated %}
+				<!-- USER QUICKVIEW -->
+				<div class="user-quickview">
+					<!-- USER AVATAR -->
+					<a href="">
+					<div class="outer-ring">
+						<div class="inner-ring"></div>
+						<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+						</figure>
+					</div>
+					</a>
+					<!-- /USER AVATAR -->
+
+                    <!-- USER INFORMATION -->
+                    <p class="user-name">{{ request.user.profile.first_name  }} {{ request.user.profile.last_name  }}</p>
+					<!-- SVG ARROW -->
+					<svg class="svg-arrow">
+						<use xlink:href="#svg-arrow"></use>
+					</svg>
+					<!-- /SVG ARROW -->
+					<p class="user-money">50 pontos</p>
+					<!-- /USER INFORMATION -->
+
+					<!-- DROPDOWN -->
+					<ul class="dropdown small hover-effect closed">
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:panel' %}">Painel</a>
+						</li>
+						<li class="dropdown-item">
+                            <a href="{% url 'logout' %}">Sair</a>
+						</li>
+					</ul>
+					<!-- /DROPDOWN -->
+				</div>
+				<!-- /USER QUICKVIEW -->
+            {% else  %}
+				<!-- ACCOUNT ACTIONS -->
+				<div class="account-actions">
+                    <a href="{% url 'accounts:register' %}">Inscrever-se</a>
+                    <a href="{% url 'login'  %}">Conectar-se</a>
+                    <a href="{% url 'provider' %}" class="button secondary">Sou um profissional</a>
+				</div>
+				<!-- /ACCOUNT ACTIONS -->
+            {% endif  %}
+			</div>
+            <!-- /USER BOARD -->
+        </header>
+
+	</div>
+	<!-- /HEADER -->
+
+	<!-- SIDE MENU -->
+	<div id="account-options-menu" class="side-menu right closed">
+		<!-- SVG PLUS -->
+
+        {% if request.user.is_authenticated %}
+		<!-- SIDE MENU HEADER -->
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+		<div class="side-menu-header">
+			<!-- USER QUICKVIEW -->
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:panel' %}">Painel</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'logout' %}">Sair</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+		</ul>
+		<!-- /DROPDOWN -->
+		</ul>
+		<!-- /DROPDOWN -->
+        {% else %}
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+        <div class="side-menu-header"></div>
+        <ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+            <li class="dropdown-item">  <a href="{% url 'accounts:register' %}">Inscrever-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'login'  %}">Conectar-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'provider' %}">Sou um profissional</a></li>
+         </ul>
+
+        {% endif %}
+	</div>
+	<!-- /SIDE MENU -->
+
+
+	<!-- BANNER -->
+	<div class="banner-wrap">
+		<section class="banner">
+			<h1>Encontre os melhores profissionais para sua casa e construção</h1>
+            <h3>Uma comunidade de 900 profissionais comprometidos em fazer a diferença</h3>
+            <br /><br />
+            <form class="search-widget-form">
+                <input type="text" name="service" placeholder="Qual serviço você precisa?">
+                    <input type="text" name="location" placeholder="Endereço, cidade ou bairro?">
+				<button class="button medium secondary">Procurar</button>
+			</form>
+		</section>
+	</div>
+	<!-- /BANNER -->
+
+	<!-- SERVICES -->
+	<div id="services-wrap">
+		<section id="services">
+			<!-- SERVICE LIST -->
+			<div class="service-list column4-wrap">
+
+                {% for profissa in profissas  %}
+				<!-- SERVICE ITEM -->
+				<div class="service-item column">
+                    <div class="circle medium gradient">
+                    </div>
+                    <div class="circle white-cover" style="background-image: url('http://via.placeholder.com/350x150')">
+                    </div>
+                    <h3>{{ profissa }}</h3>
+                    <p>(10 avaliações)</p>
+				</div>
+                <!-- /SERVICE ITEM -->
+                {% endfor %}
+			</div>
+			<!-- /SERVICE LIST -->
+			<div class="clearfix"></div>
+		</section>
+	</div>
+	<!-- /SERVICES -->
+    <div class="ht-banner-wrap">
+		<!-- HT BANNER -->
+		<div class="ht-banner void red">
+			<figure class="ht-banner-img1">
+                <img src="{% static 'core/images/profissa1.png' %}" alt="">
+			</figure>
+		</div>
+		<!-- /HT BANNER -->
+
+		<!-- HT BANNER -->
+		<div class="ht-banner">
+			<!-- HT BANNER CONTENT -->
+			<div class="ht-banner-content">
+				<p class="text-header">Encontre</p>
+                <p style="font-size:20px;">
+                    Sabe aquela reforma que você tanto deseja?<br />
+                    Não consegue encontrar um profissional que te passa confiança para resolver os seus problemas?<br />
+                    Encontre o profissa perfeito entre diversos profissionais certificados, avaliados e disponíveis!
+                </p>
+			</div>
+			<!-- /HT BANNER CONTENT -->
+		</div>
+		<!-- /HT BANNER -->
+
+		<!-- HT BANNER -->
+		<div class="ht-banner void grey">
+			<figure class="ht-banner-img2">
+                <img src="{% static 'core/images/profissa2.png' %}" alt="">
+			</figure>
+		</div>
+		<!-- /HT BANNER -->
+
+		<!-- HT BANNER -->
+		<div class="ht-banner">
+			<!-- HT BANNER CONTENT -->
+			<div class="ht-banner-content">
+				<p class="text-header">Agende</p>
+                <p style="font-size:20px;">
+                    Agende sua ordem de serviço ainda hoje.<br />
+                    Os profissionais estão te esperando pra te responder com grande rapidez e segurança!
+                </p>
+			</div>
+			<!-- /HT BANNER CONTENT -->
+		</div>
+		<!-- /HT BANNER -->
+
+		<!-- HT BANNER -->
+		<div class="ht-banner void red">
+			<figure class="ht-banner-img3">
+                <img src="{% static 'core/images/profissa3.png' %}" alt="">
+			</figure>
+		</div>
+		<!-- /HT BANNER -->
+
+		<!-- HT BANNER -->
+		<div class="ht-banner">
+			<!-- HT BANNER CONTENT -->
+			<div class="ht-banner-content">
+				<p class="text-header">Exclusividade</p>
+                <p style="font-size:20px;">
+                    Aproveite a exclusividade de uma plataforma focada em serviços para casa & construção.<br />
+                    Não procure profissionais entre produtos e outros segmentos de serviços.
+                </p>
+			</div>
+			<!-- /HT BANNER CONTENT -->
+		</div>
+		<!-- /HT BANNER -->
+	</div>
+
+
+	<div class="clearfix"></div>
+
+	<!-- SUBSCRIBE BANNER -->
+	<div id="subscribe-banner-wrap">
+		<div id="subscribe-banner">
+			<!-- SUBSCRIBE CONTENT -->
+			<div class="subscribe-content">
+				<!-- SUBSCRIBE HEADER -->
+				<div class="subscribe-header">
+					<figure>
+                        <img src="{% static 'core/images/news_icon.png' %}" alt="subscribe-icon">
+					</figure>
+					<p class="subscribe-title">Receba novidades</p>
+					<p>Conte com nossa equipe de Atendimento para ajudar a você a encontrar aquele profissional que tanto procura.</p>
+				</div>
+				<!-- /SUBSCRIBE HEADER -->
+
+				<!-- SUBSCRIBE FORM -->
+				<form class="subscribe-form">
+					<input type="text" name="subscribe_email" id="subscribe_email" placeholder="Seu email...">
+					<button class="button medium secondary">Receber novidades!</button>
+				</form>
+				<!-- /SUBSCRIBE FORM -->
+			</div>
+			<!-- /SUBSCRIBE CONTENT -->
+		</div>
+	</div>
+	<!-- /SUBSCRIBE BANNER -->
+
+	<!-- FOOTER -->
+	<footer>
+		<!-- FOOTER TOP -->
+		<div id="footer-top-wrap">
+			<div id="footer-top">
+				<!-- COMPANY INFO -->
+				<div class="company-info">
+					<figure class="logo small">
+                        <img src="{% static 'core/images/logo_full.png' %}" alt="logo-small">
+					</figure>
+					<p>Nós vamos mostrar o caminho para inovar a busca para encontrar profissionais de forma clara e segura que vão deixar sua casa perfeita.</p>
+					<!-- SOCIAL LINKS -->
+					<ul class="social-links">
+						<li class="social-link fb">
+							<a href="https://www.facebook.com/profissade"></a>
+						</li>
+					</ul>
+					<!-- /SOCIAL LINKS -->
+                    <div class="link-info">
+					<!-- /LINK LIST -->
+				</div>
+				</div>
+				<!-- /COMPANY INFO -->
+                <div class="link-info">
+					<p class="footer-title">Nossa comunidade</p>
+					<!-- LINK LIST -->
+					<ul class="link-list">
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem somos?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Como funciona?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem são os profissionais?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="blog-v1.html">Confiança e Segurança</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Free Goods</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="#">Job Oportunities</a>
+						</li>
+					</ul>
+					<!-- /LINK LIST -->
+				</div>
+			</div>
+		</div>
+		<!-- /FOOTER TOP -->
+
+		<!-- FOOTER BOTTOM -->
+		<div id="footer-bottom-wrap">
+			<div id="footer-bottom">
+				<p>profissa.de - A melhor plataforma para profissionais de casa & construção - 2017</p>
+			</div>
+		</div>
+		<!-- /FOOTER BOTTOM -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<div class="shadow-film closed"></div>
+
+
+{% endblock  %}

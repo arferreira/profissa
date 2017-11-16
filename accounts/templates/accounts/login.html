@@ -9,10 +9,11 @@
 
         <div class="form-popup-content">
             <h4 class="popup-title">
-                <center><img src="{% static 'core/images/logoweb.png'  %}" style="height:60px; width:200px;"  alt=""></center>
+                <center><a href="{% url 'root:core' %}"><img src="{% static 'core/images/logoweb.png'  %}" style="height:60px; width:200px;"  alt=""></a></center>
             </h4>
             <hr class="line-separator">
-            <br><br>
+            <a href="{% url 'social:begin' 'facebook' %}" class="button mid fb">Conectar com o Facebook</a>
+            <hr class="line-separator double">
             <form action="{% url 'login' %}" id="loginForm" method="POST" role="form">
                 {% csrf_token  %}
                 {% for error in form.non_field_errors  %}
@@ -20,22 +21,20 @@
                     {{ error  }}
                 </div>
                 {% endfor  %}
+                {% for error in form.username.errors  %}
+                <span class="help-block">{{ error  }}</span>
+                {% endfor  %}
                 <label for="username" class="rl-label">Email</label>
                 <input type="email" id="username" name="username" placeholder="Entre com o seu email...">
-                {% for error in form.username.errors  %}
-                <span class="help-block" style="color:red;">{{ error  }}</span>
+                {% for error in form.password.errors  %}
+                <span class="help-block">{{ error  }}</span>
                 {% endfor  %}
                 <label for="password" class="rl-label">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Entre com sua senha...">
-                {% for error in form.password.errors  %}
-                <span class="help-block" style="color:red;">{{ error  }}</span>
-                {% endfor  %}
-                <p>Esquece sua senha? <a href="" class="primary">Clique aqui!</a></p>
+                <p>Esquece sua senha? <a href="" class="primary">Clique aqui!</a></p><br />
                 <p>Não possui uma conta? <a href="{% url 'accounts:register' %}" class="primary">Criar conta</a></p>
                 <button class="button mid primary">Entrar<span class="primary"></span></button>
             </form>
-            <hr class="line-separator double">
-            <a href="{% url 'social:begin' 'facebook' %}" class="button mid fb">Conectar com o Facebook</a>
         </div>
     </div>
 

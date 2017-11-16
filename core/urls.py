@@ -1,10 +1,10 @@
 from django.conf.urls import url
 
-from core.views import (dashboard, home, landing_provider)
+from core import views
 
 
 urlpatterns = [
-        url(r'^$', landing_provider, name='provider'),
-        url(r'^home/$', home),
-        url(r'^painel/$', dashboard, name='dashboard'),
+        url(r'^$', views.landing_provider, name='core'),
+        url(r'^home/$', views.home),
+        url(r'^painel/$', views.dashboard_view, name='panel'),
         ]

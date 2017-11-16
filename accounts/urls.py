@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import (RegisterView, ProfileView, UpdateProfileView)
+from .views import (RegisterView, UpdateProfileView)
 
 
 urlpatterns = [
@@ -8,6 +8,4 @@ urlpatterns = [
         name='register'),
     url(r'^atualizar-perfil/$', UpdateProfileView.as_view(),
         name='update_profile'),
-    url(r'^perfil/$', ProfileView.as_view(),
-        name='profile'),
 ]

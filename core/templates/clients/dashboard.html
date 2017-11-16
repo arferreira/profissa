@@ -1,0 +1,333 @@
+{% extends "base_dashboard.html" %}
+{% block title  %} Seu perfil{% endblock  %}
+{% load static  %}
+{% block content %}
+
+<!-- SIDE MENU -->
+	<div id="dashboard-options-menu" class="side-menu dashboard left closed">
+        <!-- SVG PLUS -->
+		<svg class="svg-plus">
+			<use xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+
+		<!-- SIDE MENU HEADER -->
+		<div class="side-menu-header">
+		<!-- /SVG PLUS -->
+			<!-- USER QUICKVIEW -->
+			<div class="user-quickview">
+				<!-- USER AVATAR -->
+				<a href="author-profile.html">
+				<div class="outer-ring">
+					<div class="inner-ring"></div>
+					<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+					</figure>
+				</div>
+				</a>
+				<!-- /USER AVATAR -->
+
+				<!-- USER INFORMATION -->
+                <p class="user-name">{{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
+				<p class="user-money" style="color:white;">50 Pontos</p>
+				<!-- /USER INFORMATION -->
+			</div>
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- SIDE MENU TITLE -->
+		<p class="side-menu-title">Seu painel</p>
+		<!-- /SIDE MENU TITLE -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect interactive">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-settings.html">
+                    <span class="sl-icon icon-settings"></span>
+                    Account Settings
+                </a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-notifications.html">
+                    <span class="sl-icon icon-star"></span>
+                    Notifications
+                </a>
+                <!-- PIN -->
+                <span class="pin soft-edged big primary">49</span>
+                <!-- /PIN -->
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item interactive">
+				<a href="#">
+                    <span class="sl-icon icon-envelope"></span>
+                    Messages
+                    <!-- SVG ARROW -->
+					<svg class="svg-arrow">
+						<use xlink:href="#svg-arrow"></use>
+					</svg>
+					<!-- /SVG ARROW -->
+				</a>
+
+				<!-- INNER DROPDOWN -->
+				<ul class="inner-dropdown">
+					<!-- INNER DROPDOWN ITEM -->
+					<li class="inner-dropdown-item">
+						<a href="dashboard-inbox.html">Your Inbox (36)</a>
+						<!-- PIN -->
+						<span class="pin soft-edged secondary">2</span>
+						<!-- /PIN -->
+					</li>
+					<!-- /INNER DROPDOWN ITEM -->
+
+					<!-- INNER DROPDOWN ITEM -->
+					<li class="inner-dropdown-item">
+						<a href="dashboard-inbox-v2.html">Your Inbox (36) V2</a>
+					</li>
+					<!-- /INNER DROPDOWN ITEM -->
+
+					<!-- INNER DROPDOWN ITEM -->
+					<li class="inner-dropdown-item">
+						<a href="dashboard-openmessage.html">Open Message</a>
+					</li>
+					<!-- /INNER DROPDOWN ITEM -->
+
+					<!-- INNER DROPDOWN ITEM -->
+					<li class="inner-dropdown-item">
+						<a href="dashboard-inbox.html">Starred Message</a>
+					</li>
+					<!-- /INNER DROPDOWN ITEM -->
+
+					<!-- INNER DROPDOWN ITEM -->
+					<li class="inner-dropdown-item">
+						<a href="dashboard-inbox.html">Deleted Messages</a>
+					</li>
+					<!-- /INNER DROPDOWN ITEM -->
+				</ul>
+				<!-- INNER DROPDOWN -->
+
+                <!-- PIN -->
+                <span class="pin soft-edged big secondary">!</span>
+                <!-- /PIN -->
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-purchases.html">
+                    <span class="sl-icon icon-tag"></span>
+                    Your Purchases
+                </a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+				<a href="dashboard-buycredits.html">
+                    <span class="sl-icon icon-credit-card"></span>
+                    Buy Credits
+                </a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+		</ul>
+		<!-- /DROPDOWN -->
+
+
+        <a href="{% url 'logout' %}" class="button medium secondary">Sair</a>
+	</div>
+	<!-- /SIDE MENU -->
+
+    <!-- DASHBOARD BODY -->
+    <div class="dashboard-body">
+        <!-- DASHBOARD HEADER -->
+        <div class="dashboard-header retracted">
+            <!-- DB CLOSE BUTTON -->
+            <a href="index.html" class="db-close-button">
+               <img src="images/dashboard/back-icon.png" alt="back-icon">
+            </a>
+            <!-- DB CLOSE BUTTON -->
+
+			<!-- DB OPTIONS BUTTON -->
+            <div class="db-options-button">
+                <img src="{% static 'core/images/dashboard/db-list-right.png' %}" alt="db-list-right">
+                <img src="{% static 'core/images/dashboard/close-icon.png' %}" alt="close-icon">
+            </div>
+            <!-- DB OPTIONS BUTTON -->
+
+            <!-- DASHBOARD HEADER ITEM -->
+            <div class="dashboard-header-item title">
+                <!-- DB SIDE MENU HANDLER -->
+                 <div class="db-side-menu-handler">
+                     <img src="{% static 'core/images/dashboard/db-list-left.png' %}" alt="db-list-left">
+                </div>
+                <!-- /DB SIDE MENU HANDLER -->
+                <h6><img src="{% static 'core/images/logo_full.png'  %}" alt="" style="margin-top:10px; width:200px; height:50px;"></h6>
+            </div>
+            <!-- /DASHBOARD HEADER ITEM -->
+
+
+			<!-- DASHBOARD HEADER ITEM -->
+            <div class="dashboard-header-item back-button">
+                <a href="{% url 'root:core' %}" class="button mid dark-light">Voltar para a página inicial</a>
+            </div>
+            <!-- /DASHBOARD HEADER ITEM -->
+        </div>
+        <!-- DASHBOARD HEADER -->
+
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-content">
+            <!-- HEADLINE -->
+            <div class="headline statement primary">
+                <h4>Suas solicitações</h4>
+				<a href="#" class="button dark-light">Solicitar profissional</a>
+            </div>
+            <!-- /HEADLINE -->
+
+			<!-- SALE DATA -->
+			<div class="sale-data">
+				<!-- SALE DATA ITEM -->
+				<div class="sale-data-item">
+					<span class="sl-icon icon-present"></span>
+					<p class="text-header big">50</p>
+					<div class="sale-data-item-info">
+						<p class="text-header">Serviços solicitados</p>
+						<p>Este mês</p>
+					</div>
+				</div>
+				<!-- /SALE DATA ITEM-->
+
+				<!-- SALE DATA ITEM -->
+				<div class="sale-data-item">
+					<span class="sl-icon icon-present"></span>
+					<p class="text-header big">2</p>
+					<div class="sale-data-item-info">
+						<p class="text-header">Reclamações</p>
+						<p>Neste mês</p>
+					</div>
+				</div>
+				<!-- /SALE DATA ITEM-->
+
+				<!-- SALE DATA ITEM -->
+				<div class="sale-data-item">
+					<span class="sl-icon icon-tag"></span>
+					<p class="price big"><span>R$</span>120,50</p>
+					<div class="sale-data-item-info">
+						<p class="text-header">Total de Gastos</p>
+						<p>Este mês</p>
+					</div>
+				</div>
+				<!-- /SALE DATA ITEM-->
+
+				<!-- SALE DATA ITEM -->
+				<div class="sale-data-item">
+					<span class="sl-icon icon-wallet"></span>
+					<p class="price big"><span>R$</span>68,00</p>
+					<div class="sale-data-item-info">
+						<p class="text-header">Economizados</p>
+						<p>Com trocas de pontos por descontos</p>
+					</div>
+				</div>
+				<!-- /SALE DATA ITEM-->
+			</div>
+			<!-- /SALE DATA -->
+
+			<!-- TRANSACTION LIST -->
+			<div class="transaction-list">
+				<!-- TRANSACTION LIST HEADER -->
+				<div class="transaction-list-header">
+					<div class="transaction-list-header-date">
+						<p class="text-header small">Data</p>
+					</div>
+					<div class="transaction-list-header-author">
+						<p class="text-header small">Profissional</p>
+					</div>
+					<div class="transaction-list-header-item">
+						<p class="text-header small">Serviço</p>
+					</div>
+					<div class="transaction-list-header-code">
+						<p class="text-header small">Valor Total</p>
+					</div>
+					<div class="transaction-list-header-price">
+						<p class="text-header small">Valor Final</p>
+					</div>
+					<div class="transaction-list-header-cut">
+						<p class="text-header small">Desconto</p>
+					</div>
+					<div class="transaction-list-header-earnings">
+						<p class="text-header small">Status</p>
+					</div>
+					<div class="transaction-list-header-icon"></div>
+				</div>
+				<!-- /TRANSACTION LIST HEADER -->
+
+				<!-- TRANSACTION LIST ITEM -->
+				<div class="transaction-list-item">
+					<div class="transaction-list-item-date">
+						<p>20 de Novembro de 2017</p>
+					</div>
+					<div class="transaction-list-item-author">
+						<p class="text-header"><a href="">Mariana Souza</a></p>
+					</div>
+					<div class="transaction-list-item-item">
+						<p class="category primary"><a href="">Diária residencial</a></p>
+					</div>
+					<div class="transaction-list-item-detail">
+						<p></p>
+					</div>
+					<div class="transaction-list-item-code">
+						<p><span class="light">R$ 130,00</span></p>
+					</div>
+					<div class="transaction-list-item-price">
+						<p>R$ 117,00</p>
+					</div>
+					<div class="transaction-list-item-cut">
+						<p><span class="light">10%</span></p>
+					</div>
+					<div class="transaction-list-item-earnings">
+						<p class="text-header">Finalizado</p>
+					</div>
+					<div class="transaction-list-item-icon">
+						<div class="transaction-icon primary">
+							<!-- SVG PLUS -->
+							<svg class="svg-plus">
+								<use xlink:href="#svg-plus"></use>
+							</svg>
+							<!-- /SVG PLUS -->
+						</div>
+					</div>
+				</div>
+				<!-- /TRANSACTION LIST ITEM -->
+
+
+
+				<!-- PAGER -->
+				<div class="pager-wrap">
+					<div class="pager dark-light">
+						<div class="pager-item"><p>1</p></div>
+						<div class="pager-item active"><p>2</p></div>
+						<div class="pager-item"><p>3</p></div>
+						<div class="pager-item"><p>...</p></div>
+						<div class="pager-item"><p>17</p></div>
+					</div>
+				</div>
+				<!-- /PAGER -->
+			</div>
+			<!-- /TRANSACTION LIST -->
+        </div>
+        <!-- DASHBOARD CONTENT -->
+    </div>
+    <!-- /DASHBOARD BODY -->
+
+	<div class="shadow-film closed"></div>
+
+{% endblock %}

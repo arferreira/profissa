@@ -14,14 +14,24 @@ from business.views import profile_public
 from presentations.views import InviteView
 
 urlpatterns = [
+    # Administração Geral
     url(r'^management/', include(admin.site.urls)),
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+
+    # Captação de leads profissionais
+    url(r'^profissional/', TemplateView.as_view(template_name='home.html'),
+                            name='provider'),
     url(r'^pre-cadastro/sucesso/$',
         TemplateView.as_view(template_name='success.html'),
                              name='invite_success'),
     url(r'^pre-cadastro/$', InviteView.as_view(), name='invite'),
-    #url(r'^$', include(core_urls, namespace='landing')),
+
+    # root do sistema
+    url(r'', include(core_urls, namespace='root')),
+
+    # Perfil público
     url(r'^perfil/$', profile_public),
+
+    # Rotas de contas do usuário
     url(r'^conta/', include(accounts_urls, namespace='accounts')),
     url(r'^prestador/', include(core_urls, namespace='providers')),
     url(r'^oauth/', include('social_django.urls', namespace='social')),

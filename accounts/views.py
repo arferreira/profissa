@@ -13,6 +13,8 @@ from django.core.urlresolvers import reverse_lazy
 from .models import (User, Profile)
 from .forms import (ProfileForm, UserAdminCreationForm)
 
+
+# view responsável pelo registro dos usuários
 class RegisterView(CreateView):
     model = User
     template_name = 'accounts/registration.html'
@@ -20,8 +22,6 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('accounts:update_profile')
 
 
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/profile.html'
 
 
 class LoginView(LoginView):
@@ -30,6 +30,7 @@ class LoginView(LoginView):
                 'accounts:update_profile')
 
 
+# view responsável pela atualização do perfil de usuário
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template = 'accounts/profile_form.html'
@@ -45,14 +46,16 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse(
-                'accounts:profile')
+                'accounts:update_profile')
 
 
+
+# view responsável pelo logout de usuários
 class LogoutView(RedirectView):
     """
     Provides users the ability to logout
     """
-    url = '/usuario/identifique-se/'
+    url = '/'
 
     def get(self, request, *args, **kwargs):
         auth_logout(request)
