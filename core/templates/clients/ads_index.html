@@ -1,0 +1,716 @@
+{% extends 'base.html'  %}
+{% load staticfiles  %}
+{% block title  %} Seus anúncios de buscas por profissionais{% endblock %}
+{% block content  %}
+
+<!-- HEADER -->
+	<div class="header-wrap">
+
+		<header>
+			<!-- LOGO -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO -->
+
+			<!-- LOGO MOBILE -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo-mobile">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO MOBILE -->
+
+			<!-- MOBILE ACCOUNT OPTIONS HANDLER -->
+			<div class="mobile-account-options-handler right secondary">
+                {%  if request.user.is_authenticated   %}
+						<figure class="user-avatar" style="margin-top:20px;">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+						</figure>
+                {% else %}
+                <span class="icon-user"></span>
+                {% endif %}
+			</div>
+			<!-- /MOBILE ACCOUNT OPTIONS HANDLER -->
+
+			<!-- USER BOARD -->
+			<div class="user-board">
+            {% if request.user.is_authenticated %}
+				<!-- USER QUICKVIEW -->
+				<div class="user-quickview">
+					<!-- USER AVATAR -->
+					<a href="">
+					<div class="outer-ring">
+						<div class="inner-ring"></div>
+						<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+						</figure>
+					</div>
+					</a>
+					<!-- /USER AVATAR -->
+
+                    <!-- USER INFORMATION -->
+                    <p class="user-name">{{ request.user.profile.first_name  }} {{ request.user.profile.last_name  }}</p>
+					<!-- SVG ARROW -->
+					<svg class="svg-arrow">
+						<use xlink:href="#svg-arrow"></use>
+					</svg>
+					<!-- /SVG ARROW -->
+					<!-- /USER INFORMATION -->
+
+					<!-- DROPDOWN -->
+					<ul class="dropdown small hover-effect closed">
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:panel' %}">Painel</a>
+						</li>
+						<li class="dropdown-item">
+                            <a href="{% url 'logout' %}">Sair</a>
+						</li>
+					</ul>
+					<!-- /DROPDOWN -->
+				</div>
+				<!-- /USER QUICKVIEW -->
+            {% else  %}
+				<!-- ACCOUNT ACTIONS -->
+				<div class="account-actions">
+                    <a href="{% url 'accounts:register' %}">Inscrever-se</a>
+                    <a href="{% url 'login'  %}">Conectar-se</a>
+                    <a href="{% url 'provider' %}" class="button secondary">Sou um profissional</a>
+				</div>
+				<!-- /ACCOUNT ACTIONS -->
+            {% endif  %}
+			</div>
+            <!-- /USER BOARD -->
+        </header>
+
+	</div>
+	<!-- /HEADER -->
+
+	<!-- SIDE MENU -->
+	<div id="account-options-menu" class="side-menu right closed">
+		<!-- SVG PLUS -->
+
+        {% if request.user.is_authenticated %}
+		<!-- SIDE MENU HEADER -->
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+		<div class="side-menu-header">
+			<!-- USER QUICKVIEW -->
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:panel' %}">Painel</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'logout' %}">Sair</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+		</ul>
+		<!-- /DROPDOWN -->
+		</ul>
+		<!-- /DROPDOWN -->
+        {% else %}
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+        <div class="side-menu-header"></div>
+        <ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+            <li class="dropdown-item">  <a href="{% url 'accounts:register' %}">Inscrever-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'login'  %}">Conectar-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'provider' %}">Sou um profissional</a></li>
+         </ul>
+
+        {% endif %}
+	</div>
+	<!-- /SIDE MENU -->
+	<!-- BANNER -->
+	<div class="banner-wrap">
+		<section class="banner">
+      <h1>Crie um anúncio, descreva a demanda, coloque todos os detalhes e imagens.</h1>
+      <h3>O profissionais vão dar lances para comprar o seu anúncio e executar o serviço.</h3>
+            <br /><br />
+            <!--
+            <form class="search-widget-form">
+                <input type="text" name="service" placeholder="Qual serviço você precisa?">
+                    <input type="text" name="location" placeholder="Endereço, cidade ou bairro?">
+				<button class="button medium secondary">Procurar</button>
+            </form>
+            -->
+		</section>
+	</div>
+	<!-- /BANNER -->
+
+<div class="section-wrap">
+		<div class="section">
+			<!-- CONTENT -->
+			<div class="content">
+				<!-- HEADLINE -->
+				<div class="headline secondary">
+          <h4>{{ ads_count }} anúncio(s) encontrado(s)</h4>
+					<!-- VIEW SELECTORS -->
+					<div class="view-selectors">
+					</div>
+					<!-- /VIEW SELECTORS -->
+					<div class="clearfix"></div>
+				</div>
+				<!-- /HEADLINE -->
+
+				<!-- PRODUCT SHOWCASE -->
+				<div class="product-showcase">
+					<!-- PRODUCT LIST -->
+					<div class="product-list grid column3-4-wrap">
+            {% if ads_count <= 0 %}
+            <div class="thread">
+					<!-- THREAD TITLE -->
+					<div class="thread-title pinned">
+            <p class="text-header">Crie um serviço agora mesmo!</p><br />
+            <a href="{% url 'root:ad_client_new' %}" class="button mid primary">Criar serviço</a>
+					</div>
+					<!-- /THREAD TITLE -->
+					<!-- /COMMENTS -->
+				</div>
+
+            {% else %}
+						<!-- PRODUCT ITEM -->
+						<div class="product-item column">
+							<!-- PRODUCT PREVIEW ACTIONS -->
+							<div class="product-preview-actions">
+								<!-- PRODUCT PREVIEW IMAGE -->
+								<figure class="product-preview-image">
+									<img src="images/items/logos_m.jpg" alt="product-image">
+								</figure>
+								<!-- /PRODUCT PREVIEW IMAGE -->
+
+								<!-- PREVIEW ACTIONS -->
+								<div class="preview-actions">
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="service-page.html">
+											<div class="circle tiny primary">
+												<span class="icon-tag"></span>
+											</div>
+										</a>
+										<a href="service-page.html">
+											<p>Go to Item</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="#">
+											<div class="circle tiny secondary">
+												<span class="icon-heart"></span>
+											</div>
+										</a>
+										<a href="#">
+											<p>Favourites +</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+								</div>
+								<!-- /PREVIEW ACTIONS -->
+							</div>
+							<!-- /PRODUCT PREVIEW ACTIONS -->
+
+							<!-- PRODUCT INFO -->
+							<div class="product-info">
+								<a href="service-page.html">
+									<p class="text-header">Professional Corporate Logos</p>
+								</a>
+								<p class="product-description">Lorem ipsum dolor sit urarde...</p>
+								<a href="services.html">
+									<p class="category secondary">Graphic Design</p>
+								</a>
+								<p class="price"><span>$</span>260</p>
+							</div>
+							<!-- /PRODUCT INFO -->
+							<hr class="line-separator">
+
+							<!-- USER RATING -->
+							<div class="user-rating">
+								<a href="author-profile.html">
+									<figure class="user-avatar small">
+										<img src="images/avatars/avatar_14.jpg" alt="user-avatar">
+									</figure>
+								</a>
+								<a href="author-profile.html">
+									<p class="text-header tiny">Jenny_Block</p>
+								</a>
+								<ul class="rating tooltip tooltipstered">
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item empty">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+								</ul>
+							</div>
+							<!-- /USER RATING -->
+						</div>
+						<!-- /PRODUCT ITEM -->
+
+						<!-- PRODUCT ITEM -->
+						<div class="product-item column">
+							<!-- PRODUCT PREVIEW ACTIONS -->
+							<div class="product-preview-actions">
+								<!-- PRODUCT PREVIEW IMAGE -->
+								<figure class="product-preview-image">
+									<img src="images/items/cartoon_m.jpg" alt="product-image">
+								</figure>
+								<!-- /PRODUCT PREVIEW IMAGE -->
+
+								<!-- PREVIEW ACTIONS -->
+								<div class="preview-actions">
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="service-page.html">
+											<div class="circle tiny primary">
+												<span class="icon-tag"></span>
+											</div>
+										</a>
+										<a href="service-page.html">
+											<p>Go to Item</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="#">
+											<div class="circle tiny secondary">
+												<span class="icon-heart"></span>
+											</div>
+										</a>
+										<a href="#">
+											<p>Favourites +</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+								</div>
+								<!-- /PREVIEW ACTIONS -->
+							</div>
+							<!-- /PRODUCT PREVIEW ACTIONS -->
+
+							<!-- PRODUCT INFO -->
+							<div class="product-info">
+								<a href="service-page.html">
+									<p class="text-header">Clean Cartoon Characters</p>
+								</a>
+								<p class="product-description">Lorem ipsum dolor sit urarde...</p>
+								<a href="services.html">
+									<p class="category secondary">Illustration</p>
+								</a>
+								<p class="price"><span>$</span>180</p>
+							</div>
+							<!-- /PRODUCT INFO -->
+							<hr class="line-separator">
+
+							<!-- USER RATING -->
+							<div class="user-rating">
+								<a href="author-profile.html">
+									<figure class="user-avatar small">
+										<img src="images/avatars/avatar_15.jpg" alt="user-avatar">
+									</figure>
+								</a>
+								<a href="author-profile.html">
+									<p class="text-header tiny">AmyGlush</p>
+								</a>
+								<ul class="rating tooltip tooltipstered">
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+								</ul>
+							</div>
+							<!-- /USER RATING -->
+						</div>
+						<!-- /PRODUCT ITEM -->
+
+						<!-- PRODUCT ITEM -->
+						<div class="product-item column">
+							<!-- PRODUCT PREVIEW ACTIONS -->
+							<div class="product-preview-actions">
+								<!-- PRODUCT PREVIEW IMAGE -->
+								<figure class="product-preview-image">
+									<img src="images/items/flyers_m.jpg" alt="product-image">
+								</figure>
+								<!-- /PRODUCT PREVIEW IMAGE -->
+
+								<!-- PREVIEW ACTIONS -->
+								<div class="preview-actions">
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="service-page.html">
+											<div class="circle tiny primary">
+												<span class="icon-tag"></span>
+											</div>
+										</a>
+										<a href="service-page.html">
+											<p>Go to Item</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="#">
+											<div class="circle tiny secondary">
+												<span class="icon-heart"></span>
+											</div>
+										</a>
+										<a href="#">
+											<p>Favourites +</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+								</div>
+								<!-- /PREVIEW ACTIONS -->
+							</div>
+							<!-- /PRODUCT PREVIEW ACTIONS -->
+
+							<!-- PRODUCT INFO -->
+							<div class="product-info">
+								<a href="service-page.html">
+									<p class="text-header">Professional Party Flyers</p>
+								</a>
+								<p class="product-description">Lorem ipsum dolor sit urarde...</p>
+								<a href="services.html">
+									<p class="category secondary">Graphic Design</p>
+								</a>
+								<p class="price"><span>$</span>95</p>
+							</div>
+							<!-- /PRODUCT INFO -->
+							<hr class="line-separator">
+
+							<!-- USER RATING -->
+							<div class="user-rating">
+								<a href="author-profile.html">
+									<figure class="user-avatar small">
+										<img src="images/avatars/avatar_11.jpg" alt="user-avatar">
+									</figure>
+								</a>
+								<a href="author-profile.html">
+									<p class="text-header tiny">Vynil Brush</p>
+								</a>
+								<ul class="rating tooltip tooltipstered">
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item empty">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+								</ul>
+							</div>
+							<!-- /USER RATING -->
+						</div>
+						<!-- /PRODUCT ITEM -->
+
+						<!-- PRODUCT ITEM -->
+						<div class="product-item column">
+							<!-- PRODUCT PREVIEW ACTIONS -->
+							<div class="product-preview-actions">
+								<!-- PRODUCT PREVIEW IMAGE -->
+								<figure class="product-preview-image">
+									<img src="images/items/app_m.jpg" alt="product-image">
+								</figure>
+								<!-- /PRODUCT PREVIEW IMAGE -->
+
+								<!-- PREVIEW ACTIONS -->
+								<div class="preview-actions">
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="service-page.html">
+											<div class="circle tiny primary">
+												<span class="icon-tag"></span>
+											</div>
+										</a>
+										<a href="service-page.html">
+											<p>Go to Item</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+
+									<!-- PREVIEW ACTION -->
+									<div class="preview-action">
+										<a href="#">
+											<div class="circle tiny secondary">
+												<span class="icon-heart"></span>
+											</div>
+										</a>
+										<a href="#">
+											<p>Favourites +</p>
+										</a>
+									</div>
+									<!-- /PREVIEW ACTION -->
+								</div>
+								<!-- /PREVIEW ACTIONS -->
+							</div>
+							<!-- /PRODUCT PREVIEW ACTIONS -->
+
+							<!-- PRODUCT INFO -->
+							<div class="product-info">
+								<a href="service-page.html">
+									<p class="text-header">Vector Icons for Web Apps</p>
+								</a>
+								<p class="product-description">Lorem ipsum dolor sit urarde...</p>
+								<a href="services.html">
+									<p class="category secondary">UI/UX</p>
+								</a>
+								<p class="price"><span>$</span>260</p>
+							</div>
+							<!-- /PRODUCT INFO -->
+							<hr class="line-separator">
+
+							<!-- USER RATING -->
+							<div class="user-rating">
+								<a href="author-profile.html">
+									<figure class="user-avatar small">
+										<img src="images/avatars/avatar_03.jpg" alt="user-avatar">
+									</figure>
+								</a>
+								<a href="author-profile.html">
+									<p class="text-header tiny">Thomas_Ket</p>
+								</a>
+								<ul class="rating tooltip tooltipstered">
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+									<li class="rating-item empty">
+										<!-- SVG STAR -->
+										<svg class="svg-star">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-star"></use>
+										</svg>
+										<!-- /SVG STAR -->
+									</li>
+								</ul>
+							</div>
+							<!-- /USER RATING -->
+						</div>
+            <!-- /PRODUCT ITEM -->
+            {% endif %}
+					</div>
+					<!-- /PRODUCT LIST -->
+				</div>
+				<!-- /PRODUCT SHOWCASE -->
+
+				<div class="clearfix"></div>
+
+			</div>
+			<!-- CONTENT -->
+
+			<!-- SIDEBAR -->
+			<div class="sidebar">
+				<!-- DROPDOWN -->
+				<ul class="dropdown hover-effect secondary">
+					<li class="dropdown-item active">
+                        <a href="{% url 'root:ads_index' %}">Seus anúncios</a>
+					</li>
+					<li class="dropdown-item">
+						<a href="#">Agendamentos</a>
+					</li>
+				</ul>
+				<!-- /DROPDOWN -->
+				<!-- SIDEBAR ITEM -->
+			</div>
+			<!-- /SIDEBAR -->
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer>
+		<!-- FOOTER TOP -->
+		<div id="footer-top-wrap">
+			<div id="footer-top">
+				<!-- COMPANY INFO -->
+				<div class="company-info">
+					<figure class="logo small">
+                        <img src="{% static 'core/images/logo_full.png' %}" alt="logo-small">
+					</figure>
+					<p>Nós vamos mostrar o caminho para inovar a busca para encontrar profissionais de forma clara e segura que vão deixar sua casa perfeita.</p>
+					<!-- SOCIAL LINKS -->
+					<ul class="social-links">
+						<li class="social-link fb">
+							<a href="https://www.facebook.com/profissade"></a>
+						</li>
+					</ul>
+					<!-- /SOCIAL LINKS -->
+                    <div class="link-info">
+					<!-- /LINK LIST -->
+				</div>
+				</div>
+				<!-- /COMPANY INFO -->
+                <div class="link-info">
+					<p class="footer-title">Nossa comunidade</p>
+					<!-- LINK LIST -->
+					<ul class="link-list">
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem somos?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Como funciona?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem são os profissionais?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="blog-v1.html">Confiança e Segurança</a>
+						</li>
+					</ul>
+					<!-- /LINK LIST -->
+				</div>
+			</div>
+		</div>
+		<!-- /FOOTER TOP -->
+
+		<!-- FOOTER BOTTOM -->
+		<div id="footer-bottom-wrap">
+			<div id="footer-bottom">
+				<p>profissa.de - A melhor plataforma para profissionais de casa & construção - 2017</p>
+			</div>
+		</div>
+		<!-- /FOOTER BOTTOM -->
+	</footer>
+	<!-- /FOOTER -->
+{% endblock %}
+

@@ -1,0 +1,133 @@
+{% extends 'base.html'  %}
+{% load staticfiles  %}
+{% block title  %} Seu painel de controle{% endblock %}
+{% block content  %}
+
+  {% include 'header.html'  %}
+
+<div class="section-wrap">
+		<div class="section">
+			<!-- CONTENT -->
+			<div class="content">
+				<!-- HEADLINE -->
+				<div class="headline secondary">
+          <h4>Anuncie seu serviço</h4>
+					<!-- VIEW SELECTORS -->
+					<div class="view-selectors">
+					</div>
+					<!-- /VIEW SELECTORS -->
+					<div class="clearfix"></div>
+				</div>
+				<!-- /HEADLINE -->
+
+				<!-- PRODUCT SHOWCASE -->
+				<div class="product-showcase">
+					<!-- PRODUCT LIST -->
+					<div class="product-list grid column3-4-wrap">
+            <div class="thread">
+					<!-- THREAD TITLE -->
+					<div class="thread-title pinned">
+            <p class="text-header">Conte para todos as suas habilidades</p><br />
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert-{{ message.tags }}">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message  }}
+              </div>
+              {% endfor %}
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data" class="profile-info-form">
+              {% csrf_token %}
+              {% for error in form.non_field_errors  %}
+              <div class="alert alert-danger">
+                {{ error  }}
+              </div>
+              {% endfor  %}
+
+              {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+              {% endfor %}
+              {{ form  }}
+              <br /><br />
+                <button class="button mid-short primary">Salvar alterações</button>
+              </form>
+					</div>
+					<!-- /THREAD TITLE -->
+					<!-- /COMMENTS -->
+				</div>
+					</div>
+					<!-- /PRODUCT LIST -->
+				</div>
+				<!-- /PRODUCT SHOWCASE -->
+
+				<div class="clearfix"></div>
+
+			</div>
+			<!-- CONTENT -->
+
+      {% include 'sidebar.html' %}
+
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer>
+		<!-- FOOTER TOP -->
+		<div id="footer-top-wrap">
+			<div id="footer-top">
+				<!-- COMPANY INFO -->
+				<div class="company-info">
+					<figure class="logo small">
+                        <img src="{% static 'core/images/logo_full.png' %}" alt="logo-small">
+					</figure>
+					<p>Nós vamos mostrar o caminho para inovar a busca para encontrar profissionais de forma clara e segura que vão deixar sua casa perfeita.</p>
+					<!-- SOCIAL LINKS -->
+					<ul class="social-links">
+						<li class="social-link fb">
+							<a href="https://www.facebook.com/profissade"></a>
+						</li>
+					</ul>
+					<!-- /SOCIAL LINKS -->
+                    <div class="link-info">
+					<!-- /LINK LIST -->
+				</div>
+				</div>
+				<!-- /COMPANY INFO -->
+                <div class="link-info">
+					<p class="footer-title">Nossa comunidade</p>
+					<!-- LINK LIST -->
+					<ul class="link-list">
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem somos?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Como funciona?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="">Quem são os profissionais?</a>
+						</li>
+						<li class="link-item">
+							<div class="bullet"></div>
+							<a href="blog-v1.html">Confiança e Segurança</a>
+						</li>
+					</ul>
+					<!-- /LINK LIST -->
+				</div>
+			</div>
+		</div>
+		<!-- /FOOTER TOP -->
+
+		<!-- FOOTER BOTTOM -->
+		<div id="footer-bottom-wrap">
+			<div id="footer-bottom">
+				<p>profissa.de - A melhor plataforma para profissionais de casa & construção - 2017</p>
+			</div>
+		</div>
+		<!-- /FOOTER BOTTOM -->
+	</footer>
+	<!-- /FOOTER -->
+{% endblock %}
+

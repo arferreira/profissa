@@ -4,28 +4,28 @@ from django.db import models
 from django.core import validators
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser,
+from django.contrib.auth.models import (UserManager, AbstractBaseUser,
                                         PermissionsMixin, Permission)
 
 from accounts.helpers import (GENDER_CHOICES, STATUS_DOCUMENTS,
                               PROVIDER_CHOICES)
 
 
-class UserManager(BaseUserManager):
+class UserManager(UserManager):
 
     def create_user(self, email, password=None):
         """
         Create a user commom with client permissions
         """
         if not email:
-            raise ValueError('Usuários precisam de um endereço de email!')
+            raise ValueError('Users must have an email address')
 
         user = self.model(
-                email=self.normalize_email(email),
-                )
+            email=self.normalize_email(email),
+        )
+
         user.set_password(password)
-        user.is_active = True
-        user.save()
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password):
@@ -53,6 +53,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         ], help_text='Um nome curto que será usado para identificá-lo de forma única na plataforma'
     )
     email = models.EmailField(verbose_name='E-mail', unique=True)
+    professional = models.BooleanField(default=False, blank=False, null=False,
+                                   verbose_name='É profissional?',
+                                   choices=PROVIDER_CHOICES)
     is_staff = models.BooleanField(verbose_name='Equipe', default=False)
     is_active = models.BooleanField(verbose_name='Ativo', default=True)
     date_joined = models.DateTimeField(auto_now_add=True,
@@ -73,6 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email or self.username
+
 
     def get_full_name(self):
         return self.email
@@ -148,13 +152,24 @@ class Profile(models.Model):
                                    verbose_name='Prestador de serviço?',
                                    choices=PROVIDER_CHOICES)
 
+    def completed_profile(self):
+        if self.first_name and self.last_name:
+            return True
+        else:
+            return False
+
+    def has_avatar(self):
+        if not self.avatar:
+            return False
+
 
     class Meta:
         verbose_name = 'Perfil'
         verbose_name_plural = 'Perfis'
 
     def __str__(self):
-        return '{} {}'.format(self.user.first_name, self.user.last_name)
+        return '{} {}'.format(self.user.profile.first_name,
+                              self.user.profile.last_name)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

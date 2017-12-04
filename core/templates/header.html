@@ -1,0 +1,173 @@
+{% load static  %}
+<!-- HEADER -->
+	<div class="header-wrap">
+
+		<header>
+			<!-- LOGO -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO -->
+
+			<!-- LOGO MOBILE -->
+            <a href="{% url 'root:core' %}">
+				<figure class="logo-mobile">
+                    <img src="{% static 'core/images/logo_full.png' %}" alt="logo">
+				</figure>
+			</a>
+			<!-- /LOGO MOBILE -->
+
+			<!-- MOBILE ACCOUNT OPTIONS HANDLER -->
+			<div class="mobile-account-options-handler right secondary">
+                {%  if request.user.is_authenticated   %}
+						<figure class="user-avatar" style="margin-top:20px;">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/50x50">
+                            {% endif %}
+						</figure>
+                {% else %}
+                <span class="icon-user"></span>
+                {% endif %}
+			</div>
+			<!-- /MOBILE ACCOUNT OPTIONS HANDLER -->
+
+			<!-- USER BOARD -->
+			<div class="user-board">
+            {% if request.user.is_authenticated %}
+				<!-- USER QUICKVIEW -->
+				<div class="user-quickview">
+					<!-- USER AVATAR -->
+					<a href="">
+					<div class="outer-ring">
+						<div class="inner-ring"></div>
+						<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/50x50">
+                            {% endif %}
+						</figure>
+					</div>
+					</a>
+					<!-- /USER AVATAR -->
+
+                    <!-- USER INFORMATION -->
+                    <p class="user-name">{{ request.user.profile.first_name  }} {{ request.user.profile.last_name  }}</p>
+					<!-- SVG ARROW -->
+					<svg class="svg-arrow">
+						<use xlink:href="#svg-arrow"></use>
+					</svg>
+					<!-- /SVG ARROW -->
+					<!-- /USER INFORMATION -->
+
+					<!-- DROPDOWN -->
+					<ul class="dropdown small hover-effect closed">
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:profile_edit' %}">Meu Perfil</a>
+						</li>
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:panel' %}">Painel de controle</a>
+						</li>
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:panel' %}">Solicitação de serviços</a>
+						</li>
+						<li class="dropdown-item">
+							<div class="dropdown-triangle"></div>
+                            <a href="{% url 'root:panel' %}">Oferecer serviços</a>
+						</li>
+						<li class="dropdown-item">
+                            <a href="{% url 'logout' %}">Sair</a>
+						</li>
+					</ul>
+					<!-- /DROPDOWN -->
+				</div>
+				<!-- /USER QUICKVIEW -->
+            {% else  %}
+				<!-- ACCOUNT ACTIONS -->
+				<div class="account-actions">
+                    <a href="{% url 'accounts:register' %}">Inscrever-se</a>
+                    <a href="{% url 'login'  %}">Conectar-se</a>
+                    <a href="{% url 'provider' %}" class="button secondary">Oferecer serviço</a>
+				</div>
+				<!-- /ACCOUNT ACTIONS -->
+            {% endif  %}
+			</div>
+            <!-- /USER BOARD -->
+        </header>
+
+	</div>
+	<!-- /HEADER -->
+
+	<!-- SIDE MENU -->
+	<div id="account-options-menu" class="side-menu right closed">
+		<!-- SVG PLUS -->
+
+        {% if request.user.is_authenticated %}
+		<!-- SIDE MENU HEADER -->
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+		<div class="side-menu-header">
+			<!-- USER QUICKVIEW -->
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:profile_edit' %}">Meu perfil</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:panel' %}">Painel de controle</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:panel' %}">Solicitação de serviços</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'root:panel' %}">Oferecer serviços</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+			<!-- DROPDOWN ITEM -->
+			<li class="dropdown-item">
+                <a href="{% url 'logout' %}">Sair</a>
+			</li>
+			<!-- /DROPDOWN ITEM -->
+
+		</ul>
+		<!-- /DROPDOWN -->
+		</ul>
+		<!-- /DROPDOWN -->
+        {% else %}
+        <svg class="svg-plus">
+			<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-plus"></use>
+		</svg>
+		<!-- /SVG PLUS -->
+        <div class="side-menu-header"></div>
+        <ul class="dropdown dark hover-effect">
+			<!-- DROPDOWN ITEM -->
+            <li class="dropdown-item">  <a href="{% url 'accounts:register' %}">Inscrever-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'login'  %}">Conectar-se</a></li>
+            <li class="dropdown-item">  <a href="{% url 'provider' %}">Oferecer serviços</a></li>
+         </ul>
+
+        {% endif %}
+	</div>
+	<!-- /SIDE MENU -->
+
+

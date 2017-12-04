@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'core/icons/apple-icon-57x57.png'%}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'core/icons/apple-icon-60x60.png'%}">
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'core/icons/apple-icon-72x72.png'%}">
@@ -26,13 +27,34 @@
 </head>
 <body>
   {% block content  %}{% endblock  %}
+  <!-- SVG PLUS -->
+<svg style="display: none;">
+	<symbol id="svg-plus" viewBox="0 0 13 13" preserveAspectRatio="xMinYMin meet">
+		<rect x="5" width="3" height="13"/>
+		<rect y="5" width="13" height="3"/>
+	</symbol>
+</svg>
+<!-- /SVG PLUS -->
 <!-- jQuery -->
 <script src="{% static 'core/js/vendor/jquery-3.1.0.min.js' %}"></script>
 <!-- XM Pie Chart -->
 <script src="{% static 'core/js/vendor/jquery.xmpiechart.min.js' %}"></script>
 <!-- Side Menu -->
 <script src="{% static 'core/js/side-menu.js' %}"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- Dashboard Header -->
 <script src="{% static 'core/js/dashboard-header.js' %}"></script>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <script>
+        $(document).ready(function () {
+            toastr.success('{{ message }}');
+        });
+    </script>
+    {% endfor %}
+</ul>
+{% endif %}
 </body>
 </html>

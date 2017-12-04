@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from core.models import (Newsletter, Category, Configuration)
+
+
+admin.site.register(Newsletter)
+admin.site.register(Category)
+admin.site.register(Configuration)

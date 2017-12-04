@@ -34,9 +34,9 @@ urlpatterns = [
     # Rotas de contas do usuário
     url(r'^conta/', include(accounts_urls, namespace='accounts')),
     url(r'^prestador/', include(core_urls, namespace='providers')),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^contas/',include('allauth.urls')),
     url(r'^usuario/sair/$', logout,
-        {'next_page': '/usuario/identifique-se/'}, name='logout'),
+        {'next_page': '/'}, name='logout'),
     url(
         r'^usuario/identifique-se/$',
         LoginView.as_view(template_name='accounts/login.html'),

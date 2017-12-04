@@ -1,0 +1,129 @@
+{% extends "base_dashboard.html" %}
+{% block title  %} Seu painel profissional{% endblock  %}
+{% load static  %}
+{% block content %}
+
+<!-- SIDE MENU -->
+	<div id="dashboard-options-menu" class="side-menu dashboard left closed">
+        <!-- SVG PLUS -->
+		<!-- /SVG PLUS -->
+        <svg class="svg-plus">
+            <use xlink:href="#svg-plus"></use>
+		</svg>
+
+		<!-- SIDE MENU HEADER -->
+		<div class="side-menu-header">
+		<!-- /SVG PLUS -->
+			<!-- USER QUICKVIEW -->
+			<div class="user-quickview">
+				<!-- USER AVATAR -->
+				<a href="author-profile.html">
+				<div class="outer-ring">
+					<div class="inner-ring"></div>
+					<figure class="user-avatar">
+                            {% if request.user.profile.avatar %}
+                            <img src="{{ request.user.profile.avatar.url  }}" alt="avatar">
+                            {% else %}
+                            <img src="http://via.placeholder.com/350x150">
+                            {% endif %}
+					</figure>
+				</div>
+				</a>
+				<!-- /USER AVATAR -->
+
+				<!-- USER INFORMATION -->
+                <p class="user-name">{{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
+				<!-- /USER INFORMATION -->
+			</div>
+			<!-- /USER QUICKVIEW -->
+		</div>
+		<!-- /SIDE MENU HEADER -->
+
+		<!-- SIDE MENU TITLE -->
+		<!-- /SIDE MENU TITLE -->
+
+		<!-- DROPDOWN -->
+		<ul class="dropdown dark hover-effect interactive">
+			<!-- DROPDOWN ITEM -->
+            {% include "provider_menu.html" %}
+			<!-- /DROPDOWN ITEM -->
+		</ul>
+		<!-- /DROPDOWN -->
+
+
+        <a href="{% url 'logout' %}" class="button medium secondary">Sair</a>
+	</div>
+	<!-- /SIDE MENU -->
+
+    <!-- DASHBOARD BODY -->
+    <div class="dashboard-body">
+        <!-- DASHBOARD HEADER -->
+        <div class="dashboard-header retracted">
+            <!-- DB CLOSE BUTTON -->
+            <a href="" class="db-close-button">
+              <img src="{% static 'core/images/dashboard/back-icon.png' %}" alt="back-icon">
+            </a>
+            <!-- DB CLOSE BUTTON -->
+
+			<!-- DB OPTIONS BUTTON -->
+            <div class="db-options-button">
+                <img src="{% static 'core/images/dashboard/db-list-right.png' %}" alt="db-list-right">
+                <img src="{% static 'core/images/dashboard/close-icon.png' %}" alt="close-icon">
+            </div>
+            <!-- DB OPTIONS BUTTON -->
+
+            <!-- DASHBOARD HEADER ITEM -->
+            <div class="dashboard-header-item title">
+                <!-- DB SIDE MENU HANDLER -->
+                 <div class="db-side-menu-handler">
+                     <img src="{% static 'core/images/dashboard/db-list-left.png' %}" alt="db-list-left">
+                </div>
+                <!-- /DB SIDE MENU HANDLER -->
+                <h6><img src="{% static 'core/images/logo_full.png'  %}" alt="" style="margin-top:10px; width:200px; height:50px;"></h6>
+            </div>
+            <!-- /DASHBOARD HEADER ITEM -->
+
+
+			<!-- DASHBOARD HEADER ITEM -->
+            <div class="dashboard-header-item back-button">
+                <a href="{% url 'root:core' %}" class="button mid dark-light">Voltar para a página inicial</a>
+            </div>
+            <!-- /DASHBOARD HEADER ITEM -->
+        </div>
+        <!-- DASHBOARD HEADER -->
+
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-content">
+            <!-- HEADLINE -->
+            <div class="headline statement primary">
+                <h4>Configurações</h4>
+            </div>
+            <!-- /HEADLINE -->
+            <form action="." method="POST" enctype="multipart/form-data" class="profile-info-form">
+              {% csrf_token %}
+            <div class="form-box-items">
+              <div class="form-box-item">
+                <h4>Personalize as configurações da sua página pública</h4>
+                {{ form.as_p  }}
+              </div>
+            </div>
+              <br />
+              <button type="submit" class="button primary">Salvar</button>
+              </form>
+
+        </div>
+        <!-- DASHBOARD CONTENT -->
+    </div>
+    <!-- /DASHBOARD BODY -->
+
+	<div class="shadow-film closed"></div>
+    <!-- SVG PLUS -->
+<svg style="display: none;">
+	<symbol id="svg-plus" viewBox="0 0 13 13" preserveAspectRatio="xMinYMin meet">
+		<rect x="5" width="3" height="13"/>
+		<rect y="5" width="13" height="3"/>
+	</symbol>
+</svg>
+<!-- /SVG PLUS -->
+
+{% endblock %}

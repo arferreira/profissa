@@ -10,6 +10,6 @@ STATUS_DOCUMENTS = (
         )
 
 PROVIDER_CHOICES = (
-        (True, 'Sou prestador de serviços'),
-        (False, 'Não presto serviços')
+        (True, 'Sim'),
+        (False, 'Não')
         )

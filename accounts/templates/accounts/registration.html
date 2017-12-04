@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load socialaccount %}
 {% block title  %}Crie sua conta agora mesmo!{% endblock %}
 {% block content %}
-
+<style>
+    #id_professional{
+    margin-bottom:15px;
+    }
+</style>
 <section style="margin-top:50px;">
     <div class="form-popup">
         <div class="form-popup-content">
@@ -12,7 +17,7 @@
                 </center>
             </h4>
             <hr class="line-separator">
-            <a href="{% url 'social:begin' 'facebook' %}" class="button mid fb">Conectar com o Facebook</a>
+            <a href="{% provider_login_url "facebook" method="oauth2" %}" class="button mid fb">Conectar com o Facebook</a>
             <hr class="line-separator double">
             <form method="post" class="form-type-material">
                 {% csrf_token %}
@@ -26,9 +31,15 @@
                 {% endfor  %}
                 <label for="email_address2" class="rl-label required">Seu email</label>
                 <input type="email" id="email_address2" name="email" placeholder="Informe seu email...">
+                {% for error in form.professional.errors  %}
+                <span class="help-block" style="color:red;">{{ error  }}</span>
+                {% endfor  %}
+                <label for="professional" class="rl-label required">Você é um profissional?</label>
+                {{ form.professional  }}
                 {% for error in form.password1.errors  %}
                 <span class="help-block" style="color:red;">{{ error  }}</span>
                 {% endfor  %}
+                <br />
                 <label for="password2" class="rl-label required">Sua senha</label>
                 <input type="password" id="password2" name="password1" placeholder="Informe sua senha...">
                 {% for error in form.password2.errors  %}

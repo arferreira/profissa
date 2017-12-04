@@ -1,8 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import User
+from .models import User, Profile
 from .forms import UserAdminCreationForm, UserAdminForm
+
+
+class ProfileInline(admin.StackedInline):
+     model = Profile
+     max_num = 1
+     can_delete = False
 
 
 class UserAdmin(BaseUserAdmin):
@@ -31,6 +37,7 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
     list_display = ['username', 'email', 'is_active', 'is_staff', 'date_joined']
+    inlines = [ProfileInline]
 
 
 admin.site.register(User, UserAdmin)

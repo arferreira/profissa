@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load socialaccount %}
 {% block title %} Acesse sua conta{% endblock  %}
 {% block content %}
 
@@ -12,7 +13,7 @@
                 <center><a href="{% url 'root:core' %}"><img src="{% static 'core/images/logoweb.png'  %}" style="height:60px; width:200px;"  alt=""></a></center>
             </h4>
             <hr class="line-separator">
-            <a href="{% url 'social:begin' 'facebook' %}" class="button mid fb">Conectar com o Facebook</a>
+            <a href="{% provider_login_url "facebook" method="oauth2" %}" class="button mid fb">Conectar com o Facebook</a>
             <hr class="line-separator double">
             <form action="{% url 'login' %}" id="loginForm" method="POST" role="form">
                 {% csrf_token  %}
